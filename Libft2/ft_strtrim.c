@@ -41,22 +41,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 	result[len] = 0;
 	return (result);
 }
-
-#include <stdio.h>
-int main(void)
-{
-	char a[] = "ooooooaooooo";
-	char b[] = "oe";
-
-
-	printf("%s \n", ft_strtrim("ooooooaooooo",b));
-	printf("%s\n", ft_strtrim(a,b));
-	printf("%s\n", ft_strtrim("ooooooaoooooa",b));
-	printf("%s\n", ft_strtrim("ooooooaaaooooo",b));
-	printf("%s\n", ft_strtrim("ooooooooooooa",b));
-	printf("%s\n", ft_strtrim("ioe",b));
-	printf("%s\n", ft_strtrim("oo",b));
-	printf("%s\n", ft_strtrim("ooo",b));
-	printf("%s\n", ft_strtrim("",b));
-
-}
