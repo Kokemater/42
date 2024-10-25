@@ -24,7 +24,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (NULL);
 	start = s1;
 	end = s1 + ft_strlen(s1) - 1;
-	while (ft_strchr(set, *start) || ft_strchr(set, *end))
+	while (ft_strchr(set, *start) || (ft_strchr(set, *end)  && end > s1 ))
 	{
 		if (ft_strchr(set, *start))
 			start++;
@@ -41,7 +41,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	result[len] = 0;
 	return (result);
 }
-/*
+
+#include <stdio.h>
 int main(void)
 {
 	char a[] = "ooooooaooooo";
@@ -49,13 +50,13 @@ int main(void)
 
 
 	printf("%s \n", ft_strtrim("ooooooaooooo",b));
-		printf("%s\n", ft_strtrim(a,b));
-			printf("%s\n", ft_strtrim("ooooooaoooooa",b));
-				printf("%s\n", ft_strtrim("ooooooaaaooooo",b));
-					printf("%s\n", ft_strtrim("ooooooooooooa",b));
-					printf("%s\n", ft_strtrim("oe",b));
-					printf("%s\n", ft_strtrim("oo",b));
-					printf("%s\n", ft_strtrim("ooo",b));
-					printf("%s\n", ft_strtrim("ooooooooooo",b));
+	printf("%s\n", ft_strtrim(a,b));
+	printf("%s\n", ft_strtrim("ooooooaoooooa",b));
+	printf("%s\n", ft_strtrim("ooooooaaaooooo",b));
+	printf("%s\n", ft_strtrim("ooooooooooooa",b));
+	printf("%s\n", ft_strtrim("ioe",b));
+	printf("%s\n", ft_strtrim("oo",b));
+	printf("%s\n", ft_strtrim("ooo",b));
+	printf("%s\n", ft_strtrim("",b));
 
-}*/
+}
