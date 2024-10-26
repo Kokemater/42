@@ -27,7 +27,7 @@ static int	is_space(const char letter)
 
 int	ft_atoi(const char *str)
 {
-	int	num;
+	long	num;
 	int	sign;
 	int	i;
 
