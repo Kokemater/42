@@ -73,6 +73,11 @@ int	put_num_to_hex_with_return(unsigned long long n, int upper)
 
 int	put_pointer_with_return(unsigned long long n)
 {
-	write(1, "0x",2);
-	return (put_num_to_hex_with_return(n, 0) + 2);
+	if (n != 0)
+	{
+		write(1, "0x",2);
+		return (put_num_to_hex_with_return(n, 0) + 2);
+	}
+	else
+		return (write(1,"(nil)",5));
 }
