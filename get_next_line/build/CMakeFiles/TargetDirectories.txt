@@ -1,0 +1,3 @@
+/home/jbutragu/cursus42/get_next_line/build/CMakeFiles/test.dir
+/home/jbutragu/cursus42/get_next_line/build/CMakeFiles/edit_cache.dir
+/home/jbutragu/cursus42/get_next_line/build/CMakeFiles/rebuild_cache.dir
