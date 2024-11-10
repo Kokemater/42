@@ -73,29 +73,29 @@ CMakeFiles/test.dir/main.c.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/main.c.o: ../main.c
 CMakeFiles/test.dir/main.c.o: CMakeFiles/test.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jbutragu/cursus42/get_next_line/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/test.dir/main.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test.dir/main.c.o -MF CMakeFiles/test.dir/main.c.o.d -o CMakeFiles/test.dir/main.c.o -c /home/jbutragu/cursus42/get_next_line/main.c
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test.dir/main.c.o -MF CMakeFiles/test.dir/main.c.o.d -o CMakeFiles/test.dir/main.c.o -c /home/jbutragu/cursus42/get_next_line/main.c
 
 CMakeFiles/test.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/test.dir/main.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jbutragu/cursus42/get_next_line/main.c > CMakeFiles/test.dir/main.c.i
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jbutragu/cursus42/get_next_line/main.c > CMakeFiles/test.dir/main.c.i
 
 CMakeFiles/test.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/test.dir/main.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jbutragu/cursus42/get_next_line/main.c -o CMakeFiles/test.dir/main.c.s
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jbutragu/cursus42/get_next_line/main.c -o CMakeFiles/test.dir/main.c.s
 
 CMakeFiles/test.dir/get_next_line.c.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/get_next_line.c.o: ../get_next_line.c
 CMakeFiles/test.dir/get_next_line.c.o: CMakeFiles/test.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jbutragu/cursus42/get_next_line/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/test.dir/get_next_line.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test.dir/get_next_line.c.o -MF CMakeFiles/test.dir/get_next_line.c.o.d -o CMakeFiles/test.dir/get_next_line.c.o -c /home/jbutragu/cursus42/get_next_line/get_next_line.c
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test.dir/get_next_line.c.o -MF CMakeFiles/test.dir/get_next_line.c.o.d -o CMakeFiles/test.dir/get_next_line.c.o -c /home/jbutragu/cursus42/get_next_line/get_next_line.c
 
 CMakeFiles/test.dir/get_next_line.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/test.dir/get_next_line.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jbutragu/cursus42/get_next_line/get_next_line.c > CMakeFiles/test.dir/get_next_line.c.i
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jbutragu/cursus42/get_next_line/get_next_line.c > CMakeFiles/test.dir/get_next_line.c.i
 
 CMakeFiles/test.dir/get_next_line.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/test.dir/get_next_line.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jbutragu/cursus42/get_next_line/get_next_line.c -o CMakeFiles/test.dir/get_next_line.c.s
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jbutragu/cursus42/get_next_line/get_next_line.c -o CMakeFiles/test.dir/get_next_line.c.s
 
 # Object files for target test
 test_OBJECTS = \

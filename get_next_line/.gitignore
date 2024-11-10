@@ -1,0 +1,6 @@
+build/
+run.sh
+a.out
+*.txt
+main.c
+.vscode/

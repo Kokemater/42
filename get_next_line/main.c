@@ -7,7 +7,8 @@ int main(void)
 	int fd;
 	char *next_line;
 	int count;
-	printf("hola\n");
+
+	printf("holay\n");
 	count = 0;
 	fd = open("texto.txt", O_RDONLY);
 	next_line = get_next_line(fd);
