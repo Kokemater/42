@@ -21,7 +21,7 @@ char	*ft_strdup(const char *src)
 	return (dest);
 }
 
-char	*read_until_n(char *big_buff, int fd, int *end)
+static char	*read_until_n(char *big_buff, int fd, int *end)
 {
 	int bytes_read;
 	char tmp_buff[BUFFER_SIZE + 1];
@@ -48,7 +48,7 @@ char	*read_until_n(char *big_buff, int fd, int *end)
 	
 }
 
-char	*extract_line(char **big_buff)
+static char	*extract_line(char **big_buff)
 {
 	int		n_position;
 	char	*line;
