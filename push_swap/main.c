@@ -5,10 +5,23 @@
 
 int main(int argc, char **argv)
 {
-	t_list	*head;
+	t_list	*a;
+	t_list	*b;
 
-	head = create_list(argc, argv);
-	if (!head)
+	a = create_list(argc, argv);
+	if (!a)
 		return (1);
-	print_list(head);
+	printf("------ before ------- \n");
+	print_list(a, b);
+	printf("---------------------\n");
+	
+	//order_list(&a);
+	ra(&a);
+
+	printf("------ after ------- \n");
+	print_list(a, b);
+	printf("---------------------\n");
+
+	ft_lstclear(&a);
+	ft_lstclear(&b);
 }
