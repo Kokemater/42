@@ -11,16 +11,17 @@ int main(int argc, char **argv)
 	a = create_list(argc, argv);
 	if (!a)
 		return (1);
-	printf("------ before ------- \n");
-	print_list(a, b);
-	printf("---------------------\n");
-	
-	//order_list(&a);
-	ra(&a);
+	b = NULL;
 
-	printf("------ after ------- \n");
-	print_list(a, b);
-	printf("---------------------\n");
+	//  printf("------ before ------- \n");
+	 //print_list(a, b);
+	// printf("---------------------\n");
+	
+	order_list(&a, &b);
+
+	//  printf("------ after ------- \n");
+	//print_list(a, b);
+	// printf("---------------------\n");
 
 	ft_lstclear(&a);
 	ft_lstclear(&b);

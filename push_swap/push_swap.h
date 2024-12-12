@@ -31,9 +31,11 @@ t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_remove_head(t_list **lst);
 void	ft_remove_tail(t_list **lst);
+int	head_position(t_list *list);
+int	tail_position(t_list *list);
 
 // Order funcs
-void	order_list(t_list **head);
+void	order_list(t_list **a, t_list **b);
 
 // movements
 void	sa(t_list **a);
@@ -44,5 +46,6 @@ void	pb(t_list **a, t_list** b);
 void	pa(t_list **a, t_list** b);
 void	rra(t_list **a);
 void	rrb(t_list **a);
+void	change_container(int in_a, int in_top, t_list **a, t_list **b);
 
 #endif
