@@ -173,9 +173,15 @@ void convert_2_buipiramide(t_list **a, t_list **b)
 		else
 			top_bigger = 0;
 		if (i <= middle) // IMPORTANTE el igual (revisar)
+		{
 			change_container(1, top_bigger, a, b); // Move big
+
+		}
 		else
+		{
 			change_container(1, !top_bigger, a, b); // Move small
+
+		}
 		i++;
 	}
 }
@@ -206,9 +212,14 @@ void dj_buitremorales_sort(t_list **a, t_list **b)
 	last_move_pos = 1000;
 	morales_movements(in_a, find_bigger, last_move_pos, a, b);
 	if (is_buitripiramide(*a))
+	{
+		print_list(*a, *b);
 		convert_2_buipiramide(a, b);
+		print_list(*a, *b);
+	}
 	// if is buipiramide(*b)
 	final_order(a, b);
+
 
 	return;
 

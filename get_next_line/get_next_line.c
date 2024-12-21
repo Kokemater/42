@@ -45,7 +45,6 @@ static char	*read_until_n(char *big_buff, int fd, int *end)
 			return ( NULL);
 	}
 	return (big_buff);
-	
 }
 
 static char	*extract_line(char **big_buff)
