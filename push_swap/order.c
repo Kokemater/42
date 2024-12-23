@@ -51,67 +51,100 @@ int is_buitripiramide(t_list *a)
 		tmp = lst_prev_node(tmp, a);
 		lower_height++;
 	}
-	// //printf("%d asdfasdf %d \n ", upper_height, lower_height);
+	// ////printf("%d asdfasdf %d \n ", upper_height, lower_height);
 	i = ft_lst_len(a) - (upper_height + lower_height);
 	num_of_peaks = 0;
 	tmp = lst_find_node_by_index(a, upper_height);
-	// //printf("%d yyeye \n", tmp->position);
+	// ////printf("%d yyeye \n", tmp->position);
 	while(i > 0)
 	{
 		if (tmp->position > tmp->next->position)
 			num_of_peaks++;
 		i--;
 		tmp = tmp->next;
-		// //printf("number_of_peaks : %d \n", num_of_peaks);
+		// ////printf("number_of_peaks : %d \n", num_of_peaks);
 		if (num_of_peaks > 1)
 			return (0);
 	}
+	if (upper_height != lower_height)
+		return (0);
 	return (1);	
 }
 
-void change_comparisons(int *find_bigger, int top_bigger, int *move_pos, int last_move_pos, t_list **current_stack)
+void	change_comparisons2(int in_a, int *find_bigger, int top_bigger, t_list *a, t_list *b)
 {
-
-	if (*find_bigger)
-		{
-			if(top_bigger)
-			{
-				*move_pos = head_position(*current_stack);
-				if (*move_pos > last_move_pos)
-				{
-					*find_bigger = !(*find_bigger);
-				}
-			}
-			else
-			{
-				*move_pos = tail_position(*current_stack);
-				if ( *move_pos > last_move_pos)
-				{
-					*find_bigger = !(*find_bigger);
-				}
-			}		
-		}
-		else
+	//print_list(a, b);
+	if (in_a)
+	{
+		if (ft_lst_len(b) == 0)
+			return ;
+		if (*find_bigger)
 		{
 			if (top_bigger)
 			{
-				*move_pos = tail_position(*current_stack);
-				if (*move_pos < last_move_pos)
-				{
+				if (head_position(a) > head_position(b))
 					*find_bigger = !(*find_bigger);
-				}
+					//printf("Change  aa: NOW looking for %d \n ", *find_bigger);
 			}
 			else
 			{
-				*move_pos = head_position(*current_stack);
-				if (*move_pos < last_move_pos)
-				{
+				if (tail_position(a) > head_position(b))
 					*find_bigger = !(*find_bigger);
-				}
-			}		
-		}
-}
+				//printf("Change bb: NOW looking for %d \n ", *find_bigger);
 
+			}
+		}
+		else
+		{
+			if (!top_bigger)
+			{
+				if (head_position(a) < head_position(b))
+					*find_bigger = !(*find_bigger);
+						//printf("Change cc: NOW looking for %d \n ", *find_bigger);
+
+			}
+			else
+			{
+				if (tail_position(a) < head_position(b))
+					*find_bigger = !(*find_bigger);
+									//printf("Change dd: NOW looking for %d \n ", *find_bigger);
+
+			}
+		}
+	}
+	else if(!in_a)
+	{
+		if (ft_lst_len(a) == 0)
+			return ;
+		if (find_bigger)
+		{
+			if (top_bigger)
+			{
+				if (head_position(b) > head_position(a))
+					*find_bigger = !(*find_bigger);
+			}
+			else
+			{
+				if (tail_position(b) > head_position(a))
+					*find_bigger = !(*find_bigger);
+			}
+		}
+		else
+		{
+			if (!top_bigger)
+			{
+				if (head_position(b)< head_position(a))
+					*find_bigger = !(*find_bigger);
+			}
+			else
+			{
+				if (tail_position(b)< head_position(a))
+					*find_bigger = !(*find_bigger);
+			}
+		}
+	}
+
+}
 
 void morales_movements(int in_a, int find_bigger, int last_move_pos, t_list **a, t_list **b)
 {
@@ -120,6 +153,7 @@ void morales_movements(int in_a, int find_bigger, int last_move_pos, t_list **a,
 	int	move_pos;
 	int	change;
 	t_list	**current_stack;
+	find_bigger = 1;
 
 	change = 1;
 	if (in_a)
@@ -131,74 +165,36 @@ void morales_movements(int in_a, int find_bigger, int last_move_pos, t_list **a,
 	{
 		while (ft_lst_len(*current_stack) > 0)
 		{
+
 			if (head_position(*current_stack) > tail_position(*current_stack))
 				top_bigger = 1;
 			else
 				top_bigger = 0;
-			change_comparisons(&find_bigger, top_bigger, &move_pos, last_move_pos, current_stack);
-			if ((top_bigger && find_bigger) || (!top_bigger && !find_bigger))
-				move_top = 1;
-			if ((!top_bigger && find_bigger) || (top_bigger && !find_bigger))
-				move_top = 0;
+						//printf("SEARCHING %d \n", find_bigger);
+
+			// change_comparisons(&find_bigger, top_bigger, &move_pos, last_move_pos, current_stack);
+			change_comparisons2(in_a, &find_bigger, top_bigger, *a, *b);
+
+			move_top = (top_bigger == find_bigger);
 			change_container(in_a, move_top, a, b);
-			last_move_pos = move_pos;
+			//last_move_pos = move_pos;
 		}
+		//printf(*a, *b);
 		in_a = !in_a;
 		if (in_a)
 			current_stack = a;
 		else
 			current_stack = b;
 		find_bigger = 1;
-		last_move_pos = 1000;
+		//last_move_pos = 1000;
 		i++;
+				print_list(*a, *b);
+
 		if (is_buitripiramide(*a) && ft_lst_len(*a))
 			break ;
-
 	}
 }
 
-void convert_2_buipiramide(t_list **a, t_list **b)
-{
-	int	middle;
-	int	i;
-	int	top_bigger;
-	int size;
-
-	i = 0;
-	size = ft_lst_len(*a);
-	middle = size/2;
-	while(i < size)
-	{
-		if (head_position(*a) > tail_position(*a))
-			top_bigger = 1;
-		else
-			top_bigger = 0;
-		if (i <= middle) // IMPORTANTE el igual (revisar)
-		{
-			change_container(1, top_bigger, a, b); // Move big
-
-		}
-		else
-		{
-			change_container(1, !top_bigger, a, b); // Move small
-		}
-		i++;
-	}
-}
-
-void final_order(t_list **a, t_list **b)
-{
-	int top_bigger;
-	while(ft_lst_len(*b))
-	{
-	if (head_position(*b) > tail_position(*b))
-		top_bigger = 1;
-	else
-		top_bigger = 0;
-	change_container(0, top_bigger, a, b);
-	} 
-
-}
 
 void dj_buitremorales_sort(t_list **a, t_list **b)
 {
@@ -211,21 +207,6 @@ void dj_buitremorales_sort(t_list **a, t_list **b)
 	find_bigger = 1;
 	last_move_pos = 1000;
 	morales_movements(in_a, find_bigger, last_move_pos, a, b);
-	if (is_buitripiramide(*a))
-	{
-		//printf("---IS BUITRIPIRAMIDE!! \n");
-		//print_list(*a, *b);
-		convert_2_buipiramide(a, b);
-		//print_list(*a, *b);
-	}
-	if (ordered(*a))
-	{
-		//printf("ORDERED! \n");
-	}
-	// if is buipiramide(*b)
-	final_order(a, b);
-
-
 	return;
 
 

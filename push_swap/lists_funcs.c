@@ -41,26 +41,31 @@ t_list  *ft_lstnew(int value, int position)
 
 void	print_list(t_list *a, t_list *b)
 {
-	t_list	*temp;
+		printf("---------------------\n");
 
-	temp = a;
-
-	printf("---- A ------- \n");
-	while(temp != NULL)
+	while (a || b)
 	{
-		printf("val = %d, pos = %d \n", temp->value, temp->position);
-		temp = temp->next;
+	printf("---");
+
+	if (a)
+	{
+	printf("%i ", a->position);
+	a = a->next;
 	}
-	printf("---- B ------- \n");
-
-	temp = b;
-	while(temp != NULL)
+	else
 	{
-	printf("val = %d, pos = %d \n", temp->value, temp->position);
-		temp = temp->next;
-	}		
+	printf("  ");
+	}
+	if (b)
+	{
+	printf("%i ", b->position);
+	b = b->next;
+	}
+	printf("---\n");
 
-	return ;
+	}
+	printf("---------------------\n");
+
 }
 
 void	ft_lstclear(t_list **lst)

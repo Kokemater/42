@@ -48,6 +48,5 @@ int main(void)
 		pick_from_list(&list, &numbers_left);
 	}
 	free(list);
-
 	return 0;
 }

@@ -13,14 +13,14 @@ int main(int argc, char **argv)
 		return (1);
 	b = NULL;
 
-	//  printf("------ before ------- \n");
+	//printf("------ before ------- \n");
 	//print_list(a, b);
 	// printf("---------------------\n");
 	
 	order_list(&a, &b);
 
 
-	//  printf("------ after ------- \n");
+	//printf("------ after ------- \n");
 	//print_list(a, b);
 	// printf("---------------------\n");
 
