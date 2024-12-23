@@ -15,5 +15,4 @@ int main(void)
 		free(next_line);
 	}
 	close(fd);
-
 }

@@ -81,9 +81,8 @@ char	*get_next_line(int fd)
 {
 	static char	*big_buff = NULL;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0)
 		return (NULL);
-	
 	if (!big_buff)
 	{
 		big_buff = ft_calloc(1, 1);
@@ -91,7 +90,9 @@ char	*get_next_line(int fd)
 			return (NULL);
 	}
 	big_buff = read_until_n(fd, big_buff);
-	if (!big_buff || *big_buff == '\0')
+	if (!big_buff)
 		return (NULL);
+	if (*big_buff == '\0')
+		return (free(big_buff),big_buff = NULL, NULL);
 	return (extract_line(&big_buff));
 }
