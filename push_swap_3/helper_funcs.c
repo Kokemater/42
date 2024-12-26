@@ -34,21 +34,21 @@ int	ft_atoi(const char *str)
 	sign = 1;
 	num = 0;
 	while (is_space(str[i]))
-			i++;
+		i++;
 	if (str[i] == '-')
 	{
-			sign *= -1;
-			i++;
+		sign *= -1;
+		i++;
 	}
 	if (str[i] == '+' && (i == 0 || str[i - 1] != '-'))
-			i++;
+		i++;
 	while ((str[i] != '\0') && (str[i] >= '0' && str[i] <= '9'))
 	{
-			num = num * 10 + (str[i] - '0');
-			i++;
+		num = num * 10 + (str[i] - '0');
+		i++;
 	}
 	if (sign == -1)
-			num = num * -1;
+		num = num * -1;
 	return (num);
 }
 
@@ -69,7 +69,7 @@ char	*ft_itoa_binary_len(int n, int len)
 		len--;
 		solution[len] = binary[n%2];
 		n /= 2;
-	}	
+	}
 	return (solution);
 }
 

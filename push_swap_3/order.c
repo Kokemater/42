@@ -80,6 +80,68 @@ int	is_ordered_by_binary_index(int index, int digits, t_list *a)
 	}
 	return (1);
 }
+void merge(t_list **a, t_list **b)
+{
+	while(ft_lst_len(*b))
+	{
+		pa(a,b);
+	}
+}
+
+void radix_in_a(int index, int digits, t_list **a, t_list **b)
+{
+	int		i;
+	int		n_rotations;
+	int 	len;
+	char	*head;
+
+	i = 0;
+	len = ft_lst_len(*a);
+	n_rotations = 0;
+	while(i < len)
+	{
+		head = ft_itoa_binary_len(head_position(*a), digits);
+		if (!head)
+			return ;
+		if (head[index] == '0')
+			pb(a,b);
+		else
+		{
+			ra(a);
+			n_rotations++;
+		}
+		i++;
+		free(head);
+		//print_list(*a, *b);
+	}
+}
+void radix_in_b(int index, int digits, t_list **a, t_list **b)
+{
+	int	i;
+	int	n_rotations;
+	int len;
+	char	*head;
+
+	i = 0;
+	n_rotations = 0;
+	len = ft_lst_len(*b);
+	while((i < len) && (index >= 0) )
+	{
+		head = ft_itoa_binary_len(head_position(*b), digits);
+		if (!head)
+			return ;
+		if (head[index] == '1')
+			pa(a,b);
+		else
+		{
+			rb(b);
+			n_rotations++;
+		}
+		i++;
+		free(head);
+		//print_list(*a, *b);
+	}	
+}
 
 void order_list(t_list **a, t_list **b)
 {
@@ -100,58 +162,12 @@ void order_list(t_list **a, t_list **b)
 
 	while(index >= 0)
 	{
-		//printf("NOW RADIX IN A \n");
 
-		// Radix in a
-		i = 0;
-		len = ft_lst_len(*a);
-		n_rotations = 0;
-		while(i < len)
-		{
-
-
-			head = ft_itoa_binary_len(head_position(*a), digits);
-			if (!head)
-				return ;
-			if (head[index] == '0')
-				pb(a,b);
-			else
-			{
-				ra(a);
-				n_rotations++;
-			}
-			i++;
-			free(head);
-			//print_list(*a, *b);
-		}
-		//printf("NOW RADIX IN B \n");
-		// Radix in b
+		radix_in_a(index, digits, a, b);
 		index--;
-		i = 0;
-		n_rotations = 0;
-		len = ft_lst_len(*b);
-		while((i < len) && (index >= 0) )
-		{
-			head = ft_itoa_binary_len(head_position(*b), digits);
-			if (!head)
-				return ;
-			if (head[index] == '1')
-				pa(a,b);
-			else
-			{
-				rb(b);
-				n_rotations++;
-			}
-			i++;
-			free(head);
-			//print_list(*a, *b);
-		}		
+		radix_in_b(index, digits, a,b);	
 	}
-	// Merge
-	while(ft_lst_len(*b))
-	{
-		pa(a,b);
-	}
+	merge(a, b);
 	//printf("n bytes %d \n", digits);
 	//print_list(*a, *b);
 

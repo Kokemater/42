@@ -18,7 +18,6 @@ int main(int argc, char **argv)
 	
 	order_list(&a, &b);
 
-
 	//printf("------ after ------- \n");
 	//print_list(a, b);
 	char *str = ft_itoa_binary_len(3,4);
@@ -26,4 +25,4 @@ int main(int argc, char **argv)
 	free(str);
 	ft_lstclear(&a);
 	ft_lstclear(&b);
-	}
+}
