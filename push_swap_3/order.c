@@ -27,6 +27,8 @@ void order_3_elements(t_list **a, t_list **b)
 		rra(a);
 }
 
+
+
 int is_ordered(t_list *a)
 {
 	if (ft_lst_len(a) == 0)
@@ -90,8 +92,7 @@ void place_element_in_top(int i_a, int n_a, t_list **a)
 	}
 }
 
-
-void apply_best_move1(int i_a, int i_b, t_list **a, t_list **b)
+void apply_best_move(int i_a, int i_b, t_list **a, t_list **b)
 {
 	int n_a = ft_lst_len(*a);
 	int n_b = ft_lst_len(*b);
@@ -104,20 +105,7 @@ void apply_best_move1(int i_a, int i_b, t_list **a, t_list **b)
 	pb(a, b);
 }
 
-void apply_best_move2(int i_a, int i_b, t_list **a, t_list **b)
-{
-	int n_a = ft_lst_len(*a);
-	int n_b = ft_lst_len(*b);
-	int b_moves = (n_b/2.0 - ft_abs(i_b - n_b/2.0));
-	int i = 0;
-
-	// put a_el in the top
-	place_element_in_top(i_a, n_a, a);
-	place_element_in_top(i_b, n_b, b);
-	pa(a, b);
-}
-
-void make_minimizer_move(t_list **a, t_list **b, int step)
+void make_minimizer_move(t_list **a, t_list **b)
 {
     t_list  *current;
     int     current_ia;
@@ -142,11 +130,8 @@ void make_minimizer_move(t_list **a, t_list **b, int step)
         current_ia++;
     }
 	printf("i_a : %d \n, i_b : %d \n", i_a, i_b);
-	if (step == 1)
-		apply_best_move1(i_a, i_b, a, b);
+	apply_best_move(i_a, i_b, a, b);
 }
-
-
 
 
 
@@ -159,14 +144,14 @@ void order_list(t_list **a, t_list **b)
 		return ;
 	if (ft_lst_len(*a) == 2)
 		order_2_elements(a);
+		printf("hola");
 
 	pb(a, b);
 	printf("hola");
 	while(ft_lst_len(*a) > len / 2)
-		make_minimizer_move(a, b, 1);
+		make_minimizer_move(a, b);
 	print_list(*a, *b);
 	while (ft_lst_len(*a) > 0)
 		pb(a, b);
-	while(ft_lst_len(*a) > 0)
-		make_minimizer_move2(a, b, 2);
+
 }
