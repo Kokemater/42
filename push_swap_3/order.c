@@ -27,8 +27,6 @@ void order_3_elements(t_list **a, t_list **b)
 		rra(a);
 }
 
-
-
 int is_ordered(t_list *a)
 {
 	if (ft_lst_len(a) == 0)
@@ -91,68 +89,7 @@ void place_element_in_top(int i_a, int n_a, t_list **a)
 		}
 	}
 }
-void merge(t_list **a, t_list **b)
-{
-	while(ft_lst_len(*b))
-	{
-		pa(a,b);
-	}
-}
 
-void radix_in_a(int index, int digits, t_list **a, t_list **b)
-{
-	int		i;
-	int		n_rotations;
-	int 	len;
-	char	*head;
-
-	i = 0;
-	len = ft_lst_len(*a);
-	n_rotations = 0;
-	while(i < len)
-	{
-		head = ft_itoa_binary_len(head_position(*a), digits);
-		if (!head)
-			return ;
-		if (head[index] == '0')
-			pb(a,b);
-		else
-		{
-			ra(a);
-			n_rotations++;
-		}
-		i++;
-		free(head);
-		//print_list(*a, *b);
-	}
-}
-void radix_in_b(int index, int digits, t_list **a, t_list **b)
-{
-	int	i;
-	int	n_rotations;
-	int len;
-	char	*head;
-
-	i = 0;
-	n_rotations = 0;
-	len = ft_lst_len(*b);
-	while((i < len) && (index >= 0) )
-	{
-		head = ft_itoa_binary_len(head_position(*b), digits);
-		if (!head)
-			return ;
-		if (head[index] == '1')
-			pa(a,b);
-		else
-		{
-			rb(b);
-			n_rotations++;
-		}
-		i++;
-		free(head);
-		//print_list(*a, *b);
-	}	
-}
 
 void apply_best_move1(int i_a, int i_b, t_list **a, t_list **b)
 {
@@ -222,7 +159,6 @@ void order_list(t_list **a, t_list **b)
 		return ;
 	if (ft_lst_len(*a) == 2)
 		order_2_elements(a);
-		printf("hola");
 
 	pb(a, b);
 	printf("hola");
