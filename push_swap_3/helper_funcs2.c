@@ -15,3 +15,10 @@ int	ft_atoi_binary(char *binary_number)
 	}
 	return (total);
 }
+
+float	ft_abs(float x)
+{
+	if (x < 0)
+		return (-x);
+	return (x);
+}

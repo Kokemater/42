@@ -9,8 +9,25 @@ void order_2_elements(t_list **a)
 
 void order_3_elements(t_list **a, t_list **b)
 {
-	return ;
+	if ((*a)->position > (*a)->next->position && (*a)->next->position < (*a)->next->next->position)
+		sa(a);
+	else if ((*a)->position > (*a)->next->position && (*a)->next->position > (*a)->next->next->position)
+	{
+		sa(a);
+		rra(a);
+	}
+	else if ((*a)->position > (*a)->next->next->position && (*a)->next->position < (*a)->next->next->position)
+		ra(a);
+	else if ((*a)->position > (*a)->next->next->position && (*a)->next->position > (*a)->next->next->position)
+	{
+		sa(a);
+		ra(a);
+	}
+	else if ((*a)->position < (*a)->next->position && (*a)->next->position > (*a)->next->next->position)
+		rra(a);
 }
+
+
 
 int is_ordered(t_list *a)
 {
@@ -25,135 +42,133 @@ int is_ordered(t_list *a)
 	return (1);
 }
 
-int is_ceros(int index, int digits, t_list *a)
+int next_to_number_min(int n, t_list *b)
 {
-	char	*binary;
+	int	next_to_number;
 
-	while(a)
+	next_to_number = -1;
+	while(b && b->next)
 	{
-		binary = ft_itoa_binary_len(a->position, digits);
-		//printf("text : %s , index = %d \n", binary, index);
-		if (binary[index] == '0')
-			return (free(binary), 1);
-		free(binary);
-		a = a->next;
+		b = b->next;
+		if (b->position < n && b->position > next_to_number)
+			next_to_number = b->position;
 	}
-	//printf("NO CEROS");
-	return (0);
+	if (next_to_number == -1)
+		next_to_number = lst_find_max_position(b);
+	return (next_to_number);
 }
 
-int is_ones(int index, int digits, t_list *a)
-{
-	char	*binary;
 
-	while(a)
-	{
-		binary = ft_itoa_binary_len(a->position, digits);
-		//printf("text : %s , index = %d \n", binary, index);
-		if (binary[index] == '1')
-			return (free(binary), 1);
-		free(binary);
-		a = a->next;
-	}
-	//printf("NO ONES");
-	return (0);
+
+int	calculate_moves(int i_a, int n_a, int current_position, t_list **b, int *i_b)
+{
+	int next_to_number = next_to_number_min(current_position, *b);
+	int n_b = ft_lst_len(*b);
+	*i_b = lst_find_index_by_position(*b, next_to_number);
+
+	return ((n_b/2.0 - ft_abs(*i_b - n_b/2.0)) + (n_a/2.0 - ft_abs(i_a - n_a/2.0)));
+
 }
 
-int	is_ordered_by_binary_index(int index, int digits, t_list *a)
+void place_element_in_top(int i_a, int n_a, t_list **a)
 {
-	char	*binary;
-	int		current_number;
-	int		previous_number;
-	
-	previous_number = -1;
-	while(a)
+	int a_moves = (n_a/2.0 - ft_abs(i_a - n_a/2.0));
+	int i = 0;
+	if (i_a <=  n_a/2)
 	{
-		binary = ft_itoa_binary_len(a->position, digits);
-		if (!binary)
-			return (-1); // consider this case later
-		current_number = ft_atoi_binary(binary + index);
-		free(binary);
-		if (current_number < previous_number)
-			return (0);
-		previous_number = current_number;
-		a = a->next;
+		while (i < a_moves)
+		{
+			ra(a);
+			i++;
+		}
 	}
-	return (1);
+	else
+	{
+		while (i < a_moves)
+		{
+			rra(a);
+			i++;
+		}
+	}
 }
+
+void apply_best_move1(int i_a, int i_b, t_list **a, t_list **b)
+{
+	int n_a = ft_lst_len(*a);
+	int n_b = ft_lst_len(*b);
+	int b_moves = (n_b/2.0 - ft_abs(i_b - n_b/2.0));
+	int i = 0;
+
+	// put a_el in the top
+	place_element_in_top(i_a, n_a, a);
+	place_element_in_top(i_b, n_b, b);
+	pb(a, b);
+}
+
+void apply_best_move2(int i_a, int i_b, t_list **a, t_list **b)
+{
+	int n_a = ft_lst_len(*a);
+	int n_b = ft_lst_len(*b);
+	int b_moves = (n_b/2.0 - ft_abs(i_b - n_b/2.0));
+	int i = 0;
+
+	// put a_el in the top
+	place_element_in_top(i_a, n_a, a);
+	place_element_in_top(i_b, n_b, b);
+	pa(a, b);
+}
+
+void make_minimizer_move(t_list **a, t_list **b, int step)
+{
+    t_list  *current;
+    int     current_ia;
+    int     i_a;
+	int		i_b = -1;
+	int		best_moves_n_moves;
+	int		n_a = ft_lst_len(*a);
+
+    current_ia = 0;
+    current = *a;
+    i_a = 0;
+    best_moves_n_moves = 10000;
+    while (current)
+    {
+        int moves = calculate_moves(current_ia, n_a, current->position, b, &i_b);
+        if (moves < best_moves_n_moves)
+        {
+            best_moves_n_moves = moves;
+            i_a = current_ia;
+        }
+        current = current->next;
+        current_ia++;
+    }
+	printf("i_a : %d \n, i_b : %d \n", i_a, i_b);
+	if (step == 1)
+		apply_best_move1(i_a, i_b, a, b);
+}
+
+
+
+
 
 void order_list(t_list **a, t_list **b)
 {
 	int	len;
 	int	i;
 	len = ft_lst_len(*a);
-	if (len == 1)
-		return;
-	if (len == 2)
+	if (is_ordered(*a))
+		return ;
+	if (ft_lst_len(*a) == 2)
 		order_2_elements(a);
+		printf("hola");
 
-	int		digits;
-	char	*head;
-	int		index;
-	int		n_rotations;
-	digits = n_binary_digits(len - 1);
-	index = digits -1;
-
-	while(index >= 0)
-	{
-		//printf("NOW RADIX IN A \n");
-
-		// Radix in a
-		i = 0;
-		len = ft_lst_len(*a);
-		n_rotations = 0;
-		while(i < len)
-		{
-
-
-			head = ft_itoa_binary_len(head_position(*a), digits);
-			if (!head)
-				return ;
-			if (head[index] == '0')
-				pb(a,b);
-			else
-			{
-				ra(a);
-				n_rotations++;
-			}
-			i++;
-			free(head);
-			//print_list(*a, *b);
-		}
-		//printf("NOW RADIX IN B \n");
-		// Radix in b
-		index--;
-		i = 0;
-		n_rotations = 0;
-		len = ft_lst_len(*b);
-		while((i < len) && (index >= 0) )
-		{
-			head = ft_itoa_binary_len(head_position(*b), digits);
-			if (!head)
-				return ;
-			if (head[index] == '1')
-				pa(a,b);
-			else
-			{
-				rb(b);
-				n_rotations++;
-			}
-			i++;
-			free(head);
-			//print_list(*a, *b);
-		}		
-	}
-	// Merge
-	while(ft_lst_len(*b))
-	{
-		pa(a,b);
-	}
-	//printf("n bytes %d \n", digits);
-	//print_list(*a, *b);
-
+	pb(a, b);
+	printf("hola");
+	while(ft_lst_len(*a) > len / 2)
+		make_minimizer_move(a, b, 1);
+	print_list(*a, *b);
+	while (ft_lst_len(*a) > 0)
+		pb(a, b);
+	while(ft_lst_len(*a) > 0)
+		make_minimizer_move2(a, b, 2);
 }
-

@@ -17,7 +17,7 @@ int n_binary_digits(int n);
 char	*ft_itoa_binary_len(int n, int len);
 int		is_a_number(const char *str);
 int		ft_atoi_binary(char *binary_number);
-
+float	ft_abs(float x);
 // lst funcs
 void    ft_lstadd_back(t_list **lst, t_list *new);
 t_list  *ft_lstnew(int value, int position);
@@ -33,8 +33,13 @@ t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_remove_head(t_list **lst);
 void	ft_remove_tail(t_list **lst);
-int	head_position(t_list *list);
-int	tail_position(t_list *list);
+int		head_position(t_list *list);
+int		tail_position(t_list *list);
+int		lst_find_max_position(t_list *head);
+int		lst_find_min_position(t_list *head);
+int		lst_find_index_by_position(t_list *head, int position);
+
+
 
 // Order funcs
 void	order_list(t_list **a, t_list **b);

@@ -49,9 +49,7 @@ void	print_list(t_list *a, t_list *b)
 
 	if (a)
 	{
-	char *first = ft_itoa_binary_len(a->position,3);
-	printf("%s ", first);
-	free(first);
+	printf("%d ", a->position);
 	a = a->next;
 	}
 	else
@@ -60,9 +58,7 @@ void	print_list(t_list *a, t_list *b)
 	}
 	if (b)
 	{
-	char *second =  ft_itoa_binary_len(b->position,3);
-	printf("%s ", second);
-	free(second);
+	printf("%d ", b->position);
 	b = b->next;
 	}
 	printf("---\n");
