@@ -22,4 +22,4 @@ int main(int argc, char **argv)
 
 	ft_lstclear(&a);
 	ft_lstclear(&b);
-	}
+}
