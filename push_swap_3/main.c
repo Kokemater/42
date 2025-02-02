@@ -13,12 +13,12 @@ int main(int argc, char **argv)
 		return (1);
 	b = NULL;
 
-	printf("------ before ------- \n");
-	print_list(a, b);
-	
+	// printf("------ before ------- \n");
+	// print_list(a, b);
+
 	order_list(&a, &b);
-	printf("------ after ------- \n");
-	print_list(a, b);
+	// printf("------ after ------- \n");
+	// print_list(a, b);
 
 	ft_lstclear(&a);
 	ft_lstclear(&b);

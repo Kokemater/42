@@ -49,17 +49,21 @@ void	print_list(t_list *a, t_list *b)
 
 	if (a)
 	{
-	printf("%d ", a->position);
-	a = a->next;
+		printf("%d ", a->position);
+		a = a->next;
 	}
 	else
 	{
-	printf("  ");
+		printf("  ");
 	}
 	if (b)
 	{
 	printf("%d ", b->position);
 	b = b->next;
+	}
+	else
+	{
+		printf("  ");
 	}
 	printf("---\n");
 
