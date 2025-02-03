@@ -2,11 +2,11 @@
 
 static int	is_space(const char letter)
 {
-		if ((letter == '\n' || letter == '\f' || letter == '\r'
-						|| letter == '\t' || letter == '\v' || letter == ' '))
-				return (1);
-		else
-				return (0);
+	if ((letter == '\n' || letter == '\f' || letter == '\r'
+			|| letter == '\t' || letter == '\v' || letter == ' '))
+		return (1);
+	else
+		return (0);
 }
 
 int	is_a_number(const char *str)

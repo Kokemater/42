@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/04 00:32:44 by jbutragu          #+#    #+#             */
+/*   Updated: 2025/02/04 00:32:45 by jbutragu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #include "Libft/libft.h"
 
@@ -5,7 +17,7 @@
 
 
 static int print_element(char c, va_list args)
-{   
+{
 	int len;
 
 	len = 0;
@@ -14,7 +26,7 @@ static int print_element(char c, va_list args)
 	else if (c == 's')
 		len = put_str_with_return(va_arg(args, char *));
 	else if (c == 'd' || c == 'i')
-        len = put_number_with_return(va_arg(args, int));
+		len = put_number_with_return(va_arg(args, int));
 	else if (c == 'p')
 		len = put_pointer_with_return(va_arg(args, unsigned long long));
 	else if (c == 'u')
@@ -28,24 +40,23 @@ static int print_element(char c, va_list args)
 	return (len);
 }
 
-int ft_printf(const char *text, ...)
+int	ft_printf(const char *text, ...)
 {
-    va_list args;
-    unsigned int i;
-	unsigned int total_len;
+	va_list		args;
+	unsigned int	i;
+	unsigned int	total_len;
 
 	total_len = 0;
-    i = 0;
+	i = 0;
 	va_start(args, text);
-    while(text[i])
-    { 
-        if (text[i] == '%' && text[i+1])
-            total_len += print_element(text[++i],args);
+	while (text[i])
+	{
+		if (text[i] == '%' && text[i + 1])
+			total_len += print_element(text[++i], args);
 		else
-			total_len += write(1,&text[i],1);
-        i++;
-    }
-
+			total_len += write(1, &text[i], 1);
+		i++;
+	}
 	va_end(args);
-    return (total_len);
+	return (total_len);
 }
