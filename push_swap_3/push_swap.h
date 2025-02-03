@@ -18,6 +18,10 @@ char	*ft_itoa_binary_len(int n, int len);
 int		is_a_number(const char *str);
 int		ft_atoi_binary(char *binary_number);
 float	ft_abs(float x);
+float	ft_min(float a, float b);
+float	ft_max(float a, float b);
+float	ft_min3(float a, float b, float c);
+
 // lst funcs
 void    ft_lstadd_back(t_list **lst, t_list *new);
 t_list  *ft_lstnew(int value, int position);
@@ -54,5 +58,7 @@ void	pa(t_list **a, t_list** b);
 void	rra(t_list **a);
 void	rrb(t_list **a);
 void	change_container(int in_a, int in_top, t_list **a, t_list **b);
+void	rr(t_list **a, t_list **b);
+void	rrr(t_list **a, t_list **b);
 
 #endif

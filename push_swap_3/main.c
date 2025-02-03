@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 	b = NULL;
 
 	// printf("------ before ------- \n");
-	// print_list(a, b);
+	//  print_list(a, b);
 
 	order_list(&a, &b);
 	// printf("------ after ------- \n");

@@ -39,4 +39,25 @@ void	rb(t_list **b)
 	printf("rb\n");
 }
 
+void	rr(t_list **a, t_list **b)
+{
+	int		value;
+	int		position;
+	t_list	*node;
+
+
+	value = (*a)->value;
+	position = (*a)->position;
+	node = ft_lstnew(value, position);
+	ft_lstadd_back(a, node);
+	ft_remove_head(a);
+
+	value = (*b)->value;
+	position = (*b)->position;
+	node = ft_lstnew(value, position);
+	ft_lstadd_back(b, node);
+	ft_remove_head(b);
+	printf("rr\n");
+}
+
 

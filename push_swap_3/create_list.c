@@ -87,8 +87,6 @@ static void	add_position(t_list *head)
 }
 
 
-
-
 static void reorder_list(t_list **head, int argc,char **argv)
 {
 	int		i;

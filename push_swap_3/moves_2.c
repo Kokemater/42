@@ -61,3 +61,27 @@ void	rrb(t_list **b)
 	printf("rrb\n");
 }
 
+void rrr(t_list **a, t_list **b)
+{
+	int		value;
+	int		position;
+	t_list	*node;
+	t_list	*last_node;
+
+	last_node = ft_lstlast(*a);
+	value = (last_node)->value;
+	position = (last_node)->position;
+	node = ft_lstnew(value, position);
+	ft_lstadd_front(a, node);
+	ft_remove_tail(a);
+	
+	last_node = ft_lstlast(*b);
+	value = (last_node)->value;
+	position = (last_node)->position;
+	node = ft_lstnew(value, position);
+	ft_lstadd_front(b, node);
+	ft_remove_tail(b);
+
+	printf("rrr\n");
+}
+
