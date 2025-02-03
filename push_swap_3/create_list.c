@@ -94,7 +94,7 @@ static void reorder_list(t_list **head, int argc,char **argv)
 	t_list	*actual_position;
 
 	i = 1;
-	while(i < argc)
+	while (i < argc)
 	{
 		correct_position = lst_find_node_by_index(*head, i - 1);
 		actual_position = lst_find_node_by_value(*head, ft_atoi(argv[i]));

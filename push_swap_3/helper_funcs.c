@@ -52,38 +52,5 @@ int	ft_atoi(const char *str)
 	return (num);
 }
 
-char	*ft_itoa_binary_len(int n, int len)
-{
-	char	*binary;
-	char	*solution;
-	int		number_cpy;
 
-	binary = "01";
-
-	solution = malloc(sizeof(char) * (len + 1));
-	if (!solution)
-		return (NULL);
-	solution[len] = 0;
-	while (len > 0)
-	{
-		len--;
-		solution[len] = binary[n%2];
-		n /= 2;
-	}
-	return (solution);
-}
-
-
-int n_binary_digits(int n)
-{
-	int	len;
-
-	len = 0;
-	while(n != 0)
-	{
-		n /= 2;
-		len++;
-	}
-	return (len);
-}
 

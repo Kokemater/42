@@ -13,10 +13,8 @@ typedef struct s_list
 
 //general use funcs
 int		ft_atoi(const char *str);
-int n_binary_digits(int n);
 char	*ft_itoa_binary_len(int n, int len);
 int		is_a_number(const char *str);
-int		ft_atoi_binary(char *binary_number);
 float	ft_abs(float x);
 float	ft_min(float a, float b);
 float	ft_max(float a, float b);
@@ -50,14 +48,12 @@ void	order_list(t_list **a, t_list **b);
 
 // movements
 void	sa(t_list **a);
-void	sb(t_list **b);
 void	ra(t_list **a);
 void	rb(t_list **b);
 void	pb(t_list **a, t_list** b);
 void	pa(t_list **a, t_list** b);
 void	rra(t_list **a);
 void	rrb(t_list **a);
-void	change_container(int in_a, int in_top, t_list **a, t_list **b);
 void	rr(t_list **a, t_list **b);
 void	rrr(t_list **a, t_list **b);
 

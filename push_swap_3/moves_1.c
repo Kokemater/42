@@ -5,11 +5,6 @@ void	sa(t_list **a)
 	lst_swap_position(a, *a, (*a)->next);
 	printf("sa\n");
 }
-void	sb(t_list **b)
-{
-	lst_swap_position(b, *b, (*b)->next);
-	printf("sb\n");
-}
 
 void	ra(t_list **a)
 {
