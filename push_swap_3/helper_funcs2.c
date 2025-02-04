@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   helper_funcs2.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/04 09:17:03 by jbutragu          #+#    #+#             */
+/*   Updated: 2025/02/04 09:17:30 by jbutragu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 float	ft_abs(float x)
@@ -13,12 +25,14 @@ float	ft_min(float a, float b)
 		return (a);
 	return (b);
 }
+
 float	ft_max(float a, float b)
 {
 	if (a > b)
 		return (a);
 	return (b);
 }
+
 float	ft_min3(float a, float b, float c)
 {
 	if (a <= b && a <= c)

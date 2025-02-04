@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 00:54:16 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/04 00:54:45 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/04 09:50:30 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_list
 
 //general use funcs
 int		ft_atoi(const char *str);
+int		ft_atoi_checker(const char *str, int *error);
 char	*ft_itoa_binary_len(int n, int len);
 int		is_a_number(const char *str);
 float	ft_abs(float x);
@@ -52,7 +53,6 @@ int		tail_position(t_list *list);
 int		lst_find_max_position(t_list *head);
 int		lst_find_min_position(t_list *head);
 int		lst_find_index_by_position(t_list *head, int position);
-
 // movements
 void	sa(t_list **a);
 void	ra(t_list **a);

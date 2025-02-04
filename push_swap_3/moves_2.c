@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moves_2.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/04 09:16:40 by jbutragu          #+#    #+#             */
+/*   Updated: 2025/02/04 09:16:41 by jbutragu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	pb(t_list **a, t_list** b)
@@ -61,7 +73,7 @@ void	rrb(t_list **b)
 	printf("rrb\n");
 }
 
-void rrr(t_list **a, t_list **b)
+void	rrr(t_list **a, t_list **b)
 {
 	int		value;
 	int		position;
@@ -74,7 +86,6 @@ void rrr(t_list **a, t_list **b)
 	node = ft_lstnew(value, position);
 	ft_lstadd_front(a, node);
 	ft_remove_tail(a);
-	
 	last_node = ft_lstlast(*b);
 	value = (last_node)->value;
 	position = (last_node)->position;

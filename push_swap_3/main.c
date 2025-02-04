@@ -1,9 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/04 09:29:44 by jbutragu          #+#    #+#             */
+/*   Updated: 2025/02/04 09:37:44 by jbutragu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 #include <stdio.h>
 
-
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_list	*a;
 	t_list	*b;
@@ -12,14 +22,7 @@ int main(int argc, char **argv)
 	if (!a)
 		return (1);
 	b = NULL;
-
-	// printf("------ before ------- \n");
-	//  print_list(a, b);
-
 	order_list(&a, &b);
-	// printf("------ after ------- \n");
-	// print_list(a, b);
-
 	ft_lstclear(&a);
 	ft_lstclear(&b);
 }

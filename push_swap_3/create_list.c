@@ -1,23 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_list.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/04 09:16:51 by jbutragu          #+#    #+#             */
+/*   Updated: 2025/02/04 09:53:20 by jbutragu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int lst_bubble_sort(t_list *head);
+int			lst_bubble_sort(t_list *head);
 static void	add_position(t_list *head);
-static void reorder_list(t_list **head, int argc,char **argv);
+static void	reorder_list(t_list **head, int argc, char **argv);
 
 t_list	*create_list(int argc, char **argv)
 {
 	int		i;
 	int		value;
-	t_list  *head;
+	int		error;
+	t_list	*head;
 	t_list	*new;
-
+	error = 0;
 	head = NULL;
 	i = 1;
 	while (i < argc)
 	{
 		if (!is_a_number(argv[i]))
 			return (NULL);
-		value = ft_atoi(argv[i]);
+		value = ft_atoi_checker(argv[i], &error);
+		if (error == 1)
+		{
+			printf("Error\n");
+			return (NULL);
+		}
 		new = ft_lstnew(value, 0);
 		i++;
 		ft_lstadd_back(&head, new);
@@ -25,13 +43,14 @@ t_list	*create_list(int argc, char **argv)
 	if (lst_bubble_sort(head))
 		return (NULL);
 	add_position(head);
-	reorder_list(&head,argc, argv);
+	reorder_list(&head, argc, argv);
 	return (head);
 }
 
 void	bubble_swap(t_list *tmp, t_list *tmp_next, int *ordered)
 {
 	int	temp_data;
+
 	if (tmp_next->value < tmp->value)
 	{
 		*ordered = 0;
@@ -56,10 +75,10 @@ int	lst_bubble_sort(t_list *head)
 	tmp = head;
 	tmp_next = head->next;
 	ordered = 0;
-	while(!ordered)
+	while (!ordered)
 	{
 		ordered = 1;
-		while(tmp_next != NULL)
+		while (tmp_next != NULL)
 		{
 			bubble_swap(tmp, tmp_next, &ordered);
 			if (tmp_next->value == tmp->value)
@@ -75,10 +94,10 @@ int	lst_bubble_sort(t_list *head)
 
 static void	add_position(t_list *head)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(head)
+	while (head)
 	{
 		head->position = i;
 		head = head->next;
@@ -86,8 +105,7 @@ static void	add_position(t_list *head)
 	}
 }
 
-
-static void reorder_list(t_list **head, int argc,char **argv)
+static void	reorder_list(t_list **head, int argc, char **argv)
 {
 	int		i;
 	t_list	*correct_position;

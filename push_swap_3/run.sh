@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Compilar el programa push_swap con sanitizadores de memoria
-gcc *.c -o push_swap -g -fsanitize=address
+gcc *.c -Wall -Wextra -Werror -o push_swap -g -fsanitize=address
 
 # Generar una lista aleatoria de 500 números del 1 al 500
 shuf -i 1-500 > numeros.txt

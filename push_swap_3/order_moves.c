@@ -1,19 +1,19 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   order_moves.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/04 09:15:26 by jbutragu          #+#    #+#             */
+/*   Updated: 2025/02/04 09:30:52 by jbutragu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	place_element_in_top_a(int i_a, int n_a, t_list **a, int *a_moves)
-{
-	if (i_a <= n_a / 2)
-		ra(a);
-	else
-		rra(a);
-	(*a_moves)--;
-}
+#include "push_swap.h"
 
 void	place_element_in_top_b(int i_a, int n_a, t_list **a, int *b_moves)
 {
-	int	i;
-
-	i = 0;
 	if (i_a <= n_a / 2)
 		rb(a);
 	else
