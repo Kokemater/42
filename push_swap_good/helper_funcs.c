@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 09:17:00 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/10 17:20:04 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:46:30 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ int	is_a_number(const char *str)
 	while (str[i])
 	{
 		if (!(str[i] >= '0' && str[i] <= '9'))
-			return (0);
+			if (!((str[i] == '+' || str[i] == '-') && (str[i + 1] >= '0'
+						&& str[i + 1] <= '9')))
+				return (0);
 		i++;
 	}
 	return (1);
@@ -72,6 +74,35 @@ int	ft_atoi_checker(const char *str, int *error)
 		num = num * -1;
 	*error = 0;
 	return (num);
+}
+
+
+long	ft_atol(const char *str)
+{
+	long	num;
+	int		sign;
+	int		i;
+
+	i = 0;
+	sign = 1;
+	num = 0;
+	long big_val = (long) MAX_INT + 1;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9') 
+	{
+		num = num * 10 + (str[i] - '0');
+		if ((num >= big_val && sign == 1) || (num >= big_val + 1 && sign == -1))
+			return (big_val);
+		i++;
+	}
+	return (num * sign);
 }
 
 int	ft_atoi(const char *str)

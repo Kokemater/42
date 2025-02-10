@@ -1,5 +1,4 @@
 #!/bin/bash
 
-$ARG=$(shuf -i 1-500 | tr '\n' ' '>text.txt ; cat text.txt)
-
-./push_swap $ARG 
+ARG=$(shuf -i 1-500 | tr '\n' ' ')
+./push_swap $ARG | ./checker_linux $ARG

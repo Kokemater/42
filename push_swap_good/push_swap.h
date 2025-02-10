@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 00:54:16 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/10 16:27:12 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:19:23 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ typedef struct s_list
 	struct s_list	*next;
 }		t_list;
 
+# define MAX_INT 2147483647
+# define MIN_INT -2147483648
+
 //general use funcs
+long		ft_atol(const char *str);
 int		ft_atoi(const char *str);
 int		ft_atoi_checker(const char *str, int *error);
 char	*ft_itoa_binary_len(int n, int len);

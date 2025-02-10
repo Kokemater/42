@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 09:16:51 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/04 10:50:40 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:47:05 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	reorder_list(t_list **head, int argc, char **argv);
 t_list	*create_list(int argc, char **argv)
 {
 	int		i;
-	int		value;
+	long	value;
 	t_list	*head;
 	t_list	*new;
 
@@ -27,7 +27,12 @@ t_list	*create_list(int argc, char **argv)
 	i = 1;
 	while (i < argc)
 	{
-		value = ft_atoi(argv[i]);
+		value = ft_atol(argv[i]);
+		if (value - 1 == MAX_INT)
+		{
+			write(1, "Error\n", 6);
+			return (NULL);
+		}
 		new = ft_lstnew(value, 0);
 		i++;
 		ft_lstadd_back(&head, new);
@@ -52,10 +57,6 @@ void	bubble_swap(t_list *tmp, t_list *tmp_next, int *ordered)
 	}
 }
 
-/*
-This function given a linked list, return the the list ordered
-and changing the position values using bubble_sort algorythm.
-*/
 int	lst_bubble_sort(t_list *head)
 {
 	t_list	*tmp;
