@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 09:29:44 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/04 10:52:05 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:29:01 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	if (errors)
 		return (0);
 	a = create_list(argc, argv);
-	if (!a)
+	if (!a) // return 1 - negativos - ordenar - comillas - maxmin int -
 		return (1);
 	b = NULL;
 	order_list(&a, &b);

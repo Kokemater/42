@@ -1,9 +1,21 @@
-#ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/04 08:57:28 by jbutragu          #+#    #+#             */
+/*   Updated: 2025/02/04 08:57:39 by jbutragu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdarg.h>
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdarg.h>
 
 int	ft_printf(const char *text, ...);
 int	put_num_to_hex_with_return(unsigned long long n, int upper);

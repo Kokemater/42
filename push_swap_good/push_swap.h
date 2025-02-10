@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 00:54:16 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/04 10:57:04 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:27:12 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
-# include <stdio.h>
+# include <unistd.h>
 
 typedef struct s_list
 {

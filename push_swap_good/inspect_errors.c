@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:50:24 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/04 10:57:22 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:24:45 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ int	inspect_errors(int argc, char **argv)
 	{
 		if (!is_a_number(argv[i]))
 		{
-			printf("Error\n");
+			write(1, "Error\n", 6);
 			return (1);
 		}
 		i++;
 	}
 	if (repeated_nums(argc, argv))
 	{
-		printf("Error\n");
+		write(1, "Error\n", 6);
 		return (1);
 	}
 	return (0);

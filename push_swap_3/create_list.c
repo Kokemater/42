@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 09:16:51 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/04 09:53:20 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/04 10:16:09 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_list	*create_list(int argc, char **argv)
 	int		error;
 	t_list	*head;
 	t_list	*new;
+
 	error = 0;
 	head = NULL;
 	i = 1;

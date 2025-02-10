@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 18:32:01 by jbutragu          #+#    #+#             */
-/*   Updated: 2024/10/09 20:06:38 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/04 09:45:51 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static int	is_space(const char letter)
 int	ft_atoi(const char *str)
 {
 	long	num;
-	int	sign;
-	int	i;
+	int		sign;
+	int		i;
 
 	i = 0;
 	sign = 1;

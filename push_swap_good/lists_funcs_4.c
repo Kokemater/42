@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 09:22:39 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/04 10:27:21 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:11:16 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	lst_find_max_position(t_list *head)
 	}
 	return (max_position);
 }
-
 
 int	lst_find_min_position(t_list *head)
 {
