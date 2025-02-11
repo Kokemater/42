@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 09:21:35 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/11 12:28:04 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:58:47 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,17 @@ t_list	*lst_find_node_by_value(t_list *head, int value)
 		head = head->next;
 	}
 	return (NULL);
+}
+
+int	ft_lst_len(t_list *head)
+{
+	int	len;
+
+	len = 0;
+	while (head != NULL)
+	{
+		head = head->next;
+		len++;
+	}
+	return (len);
 }
