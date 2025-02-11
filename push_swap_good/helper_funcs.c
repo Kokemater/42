@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 09:17:00 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/11 12:27:50 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:44:24 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,6 @@ static int	is_space(const char letter)
 		return (1);
 	else
 		return (0);
-}
-
-int	is_a_number(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (!(str[i] >= '0' && str[i] <= '9'))
-			if (!((str[i] == '+' || str[i] == '-') && (str[i + 1] >= '0'
-						&& str[i + 1] <= '9')))
-				return (0);
-		i++;
-	}
-	return (1);
 }
 
 void	skip_spaces(int *i, int *sign, const char *str)

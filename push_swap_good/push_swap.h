@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 00:54:16 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/11 13:30:49 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:40:29 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,7 @@ void				rrr(t_list **a, t_list **b);
 
 // Order
 void				order_list(t_list **a, t_list **b);
-void				apply_best_move(int *i, t_list **a, t_list **b,
-						int pa);
+void				apply_best_move(int *i, t_list **a, t_list **b, int pa);
 void				order_2_elements(t_list **a);
 void				order_3_elements(t_list **a);
 int					next_to_number_min(int n, t_list *b);
@@ -101,9 +100,9 @@ void				push(int push_to_a, t_list **a, t_list **b);
 int					moves_no_paralel(int i_a, int i_b, int n_a, int n_b);
 int					moves_paralel_down(int steps_down_a, int steps_down_b);
 int					moves_paralel_up(int i_a, int i_b);
-int					n_moves(int i_a, int n_a, int current_position, t_list **b,
+int					n_moves(int *curr_and_len, int current_position, t_list **b,
 						int *i_b);
-int					n_moves2(int i_a, int n_a, int current_position, t_list **b,
-						int *i_b);
+int					n_moves2(int *curr_and_len, int current_position,
+						t_list **b, int *i_b);
 
 #endif
