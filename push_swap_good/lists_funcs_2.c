@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 09:17:37 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/11 13:58:31 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:52:22 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	swap_consecutive_nodes(t_list **head, t_list *a, t_list *b,
 	}
 }
 
-void	update_nodes(t_list *node_a, t_list *node_b)
+static void	update_nodes(t_list *node_a, t_list *node_b)
 {
 	t_list	*temp;
 

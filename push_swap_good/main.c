@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 09:29:44 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/11 12:49:04 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:43:30 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		return (0);
 	inputs = join_args(argc, argv, &input_len);
+	if (!inputs)
+		return (1);
 	errors = inspect_errors(input_len, inputs);
 	if (errors)
 		return (free_arr(inputs), 1);

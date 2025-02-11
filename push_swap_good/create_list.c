@@ -6,14 +6,13 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 09:16:51 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/11 12:21:06 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:49:51 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-int			lst_bubble_sort(t_list *head);
+static int	lst_bubble_sort(t_list *head);
 static void	add_position(t_list *head);
 static void	reorder_list(t_list **head, int argc, char **argv);
 
@@ -45,7 +44,7 @@ t_list	*create_list(int argc, char **argv)
 	return (head);
 }
 
-void	bubble_swap(t_list *tmp, t_list *tmp_next, int *ordered)
+static void	bubble_swap(t_list *tmp, t_list *tmp_next, int *ordered)
 {
 	int	temp_data;
 
@@ -58,7 +57,7 @@ void	bubble_swap(t_list *tmp, t_list *tmp_next, int *ordered)
 	}
 }
 
-int	lst_bubble_sort(t_list *head)
+static int	lst_bubble_sort(t_list *head)
 {
 	t_list	*tmp;
 	t_list	*tmp_next;

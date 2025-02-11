@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 00:54:16 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/11 13:40:29 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:44:20 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void				rra(t_list **a);
 void				rrb(t_list **a);
 void				rr(t_list **a, t_list **b);
 void				rrr(t_list **a, t_list **b);
-
 // Order
 void				order_list(t_list **a, t_list **b);
 void				apply_best_move(int *i, t_list **a, t_list **b, int pa);

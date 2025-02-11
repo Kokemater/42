@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 09:17:00 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/11 13:44:24 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:50:23 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	is_space(const char letter)
 		return (0);
 }
 
-void	skip_spaces(int *i, int *sign, const char *str)
+static void	skip_spaces(int *i, int *sign, const char *str)
 {
 	while (str[*i] == ' ' || is_space(str[*i]))
 		i++;

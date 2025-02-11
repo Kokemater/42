@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:37:03 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/11 12:52:54 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:42:19 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	**join_args(int argc, char **argv, int *total_len)
 	char	**new;
 
 	result = malloc(sizeof(char *) * 1);
+	if (!result)
+		return (NULL);
 	result[0] = 0;
 	*total_len = 0;
 	i = 1;
