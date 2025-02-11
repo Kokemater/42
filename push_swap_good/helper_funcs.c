@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 09:17:00 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/11 12:00:18 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:27:50 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,17 +76,17 @@ int	ft_atoi_checker(const char *str, int *error)
 	return (num);
 }
 
-
 long	ft_atol(const char *str)
 {
 	long	num;
 	int		sign;
 	int		i;
+	long	big_val;
 
 	i = 0;
 	sign = 1;
 	num = 0;
-	long big_val = (long) MAX_INT + 1;
+	big_val = (long)MAX_INT + 1;
 	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
@@ -95,7 +95,7 @@ long	ft_atol(const char *str)
 			sign = -1;
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9') 
+	while (str[i] >= '0' && str[i] <= '9')
 	{
 		num = num * 10 + (str[i] - '0');
 		if ((num >= big_val && sign == 1) || (num >= big_val + 1 && sign == -1))

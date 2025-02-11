@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:30:02 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/04 10:30:07 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:28:40 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	next_to_number_min(int n, t_list *b)
 	next_to_number = -1;
 	while (current)
 	{
-		if (current->position < n &&
-			(next_to_number == -1 || current->position > next_to_number))
+		if (current->position < n && (next_to_number == -1
+				|| current->position > next_to_number))
 			next_to_number = current->position;
 		current = current->next;
 	}
@@ -38,11 +38,10 @@ int	next_to_number_max(int n, t_list *b)
 
 	current = b;
 	next_to_number = -1;
-
 	while (current)
 	{
-		if (current->position > n &&
-			(next_to_number == -1 || current->position < next_to_number))
+		if (current->position > n && (next_to_number == -1
+				|| current->position < next_to_number))
 			next_to_number = current->position;
 		current = current->next;
 	}

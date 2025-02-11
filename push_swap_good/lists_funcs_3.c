@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 09:21:35 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/04 10:27:12 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:28:04 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_remove_tail(t_list **lst)
 	tmp = *lst;
 	if (!tmp)
 		return ;
-	else if (!(tmp ->next))
+	else if (!(tmp->next))
 	{
 		free(tmp);
 		*lst = NULL;

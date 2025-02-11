@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 09:28:07 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/04 10:27:48 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:28:09 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_list	*ft_lstnew(int value, int position)
 {
 	t_list	*new_node;
 
-	new_node = (t_list *) malloc(sizeof(t_list));
+	new_node = (t_list *)malloc(sizeof(t_list));
 	if (!new_node)
 		return (NULL);
 	new_node->position = position;

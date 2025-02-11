@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:50:24 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/11 12:25:43 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:27:58 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static int	repeated_nums(int argc, char **argv)
 	return (0);
 }
 #include <stdio.h>
+
 int	inspect_errors(int argc, char **argv)
 {
 	int	i;

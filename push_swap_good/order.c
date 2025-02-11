@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 00:49:32 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/10 17:51:18 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:51:25 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ static void	order_more_elements(t_list **a, t_list **b, int len)
 			rra(a);
 	}
 }
+
 int	is_ordered(t_list **a)
 {
 	t_list	*tmp;
@@ -107,6 +108,7 @@ int	is_ordered(t_list **a)
 void	order_list(t_list **a, t_list **b)
 {
 	int	len;
+
 	if (is_ordered(a))
 		return ;
 	len = ft_lst_len(*a);

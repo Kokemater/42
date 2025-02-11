@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 09:17:37 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/04 10:26:41 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:28:01 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ t_list	*lst_find_node_by_index(t_list *head, int index)
 	return (head);
 }
 
-
-
 t_list	*lst_prev_node(t_list *head, t_list *node)
 {
 	if (head == node)
@@ -53,7 +51,8 @@ t_list	*lst_prev_node(t_list *head, t_list *node)
 	return (NULL);
 }
 
-static void	swap_consecutive_nodes(t_list **head, t_list *a, t_list *b, t_list *a_prev, t_list *b_prev)
+static void	swap_consecutive_nodes(t_list **head, t_list *a, t_list *b,
+		t_list *a_prev, t_list *b_prev)
 {
 	if (a->next == b)
 	{
