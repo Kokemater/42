@@ -6,11 +6,12 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 09:16:51 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/10 18:47:05 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/11 01:26:30 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 int			lst_bubble_sort(t_list *head);
 static void	add_position(t_list *head);
@@ -24,7 +25,7 @@ t_list	*create_list(int argc, char **argv)
 	t_list	*new;
 
 	head = NULL;
-	i = 1;
+	i = 0;
 	while (i < argc)
 	{
 		value = ft_atol(argv[i]);
@@ -104,10 +105,10 @@ static void	reorder_list(t_list **head, int argc, char **argv)
 	t_list	*correct_position;
 	t_list	*actual_position;
 
-	i = 1;
+	i = 0;
 	while (i < argc)
 	{
-		correct_position = lst_find_node_by_index(*head, i - 1);
+		correct_position = lst_find_node_by_index(*head, i);
 		actual_position = lst_find_node_by_value(*head, ft_atoi(argv[i]));
 		lst_swap_position(head, correct_position, actual_position);
 		i++;

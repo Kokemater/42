@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 00:54:16 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/10 18:19:23 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/11 01:20:35 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	inspect_errors(int argc, char **argv);
 // lst funcs
 void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstnew(int value, int position);
-void	print_list(t_list *a, t_list *b);
 void	ft_lstclear(t_list **lst);
 int		ft_lst_len(t_list *head);
 t_list	*create_list(int argc, char **argv);

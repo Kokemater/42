@@ -17,7 +17,7 @@ INCLUDE = push_swap.h
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	cc $(CFLAGS) $(OBJ) -o $(NAME)
+	cc $(CFLAGS) -fsanitize=address -g $(OBJ) -o $(NAME)
 
 %.o: %.c
 	cc $(CFLAGS) -c -o $@ $<
