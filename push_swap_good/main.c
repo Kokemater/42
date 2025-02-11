@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 09:29:44 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/11 12:08:54 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:24:25 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,11 +154,32 @@ char	**ft_split_spaces(const char *s)
 	return (ret);
 }
 
+char	**join(char **result, char **arr1, char **arr2)
+{
+	int	i;
+	int	len1;
+
+	i = 0;
+	while (arr1[i])
+	{
+		result[i] = arr1[i];
+		i++;
+	}
+	len1 = i;
+	i = 0;
+	while (arr2[i])
+	{
+		result[len1 + i] = arr2[i];
+		i++;
+	}
+	result[len1 + i] = NULL;
+	return (result);
+}
+
 char	**join_arrays(char **arr1, char **arr2)
 {
 	int		len1;
 	int		len2;
-	int		i;
 	char	**result;
 
 	len1 = 0;
@@ -174,19 +195,7 @@ char	**join_arrays(char **arr1, char **arr2)
 		free_arr(arr2);
 		return (NULL);
 	}
-	i = 0;
-	while (i < len1)
-	{
-		result[i] = arr1[i];
-		i++;
-	}
-	i = 0;
-	while (i < len2)
-	{
-		result[len1 + i] = arr2[i];
-		i++;
-	}
-	result[len1 + len2] = NULL;
+	result = join(result, arr1, arr2);
 	free(arr1);
 	free(arr2);
 	return (result);
@@ -234,12 +243,15 @@ int	main(int argc, char **argv)
 	if (errors)
 	{
 		free_arr(inputs);
+		ft_lstclear(&a);
+
 		return (1);
 	}
 	a = create_list(input_len, inputs);
 	if (!a)
 	{
 		free_arr(inputs);
+		ft_lstclear(&a);
 		return (1);
 	}
 	b = NULL;

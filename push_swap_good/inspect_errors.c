@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:50:24 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/11 01:18:45 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:25:43 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	repeated_nums(int argc, char **argv)
 	int	i;
 	int	j;
 
-	i = 1;
+	i = 0;
 	while (i < argc)
 	{
 		j = i + 1;
