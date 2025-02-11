@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 00:49:32 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/11 12:51:25 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:31:49 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	make_minimizer_move(t_list **a, t_list **b)
 		curr_n = curr_n->next;
 		curr[0]++;
 	}
-	apply_best_move(i[0], i[1], a, b, 0);
+	apply_best_move(i, a, b, 0);
 }
 
 static void	make_minimizer_move2(t_list **a, t_list **b)
@@ -65,7 +65,7 @@ static void	make_minimizer_move2(t_list **a, t_list **b)
 		curr_n = curr_n->next;
 		curr[1]++;
 	}
-	apply_best_move(i[0], i[1], a, b, 1);
+	apply_best_move(i, a, b, 1);
 }
 
 static void	order_more_elements(t_list **a, t_list **b, int len)
