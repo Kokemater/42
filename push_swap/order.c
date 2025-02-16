@@ -188,7 +188,7 @@ void morales_movements(int in_a, int find_bigger, int last_move_pos, t_list **a,
 		find_bigger = 1;
 		//last_move_pos = 1000;
 		i++;
-				print_list(*a, *b);
+				//print_list(*a, *b);
 
 		if (is_buitripiramide(*a) && ft_lst_len(*a))
 			break ;

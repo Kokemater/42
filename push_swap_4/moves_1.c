@@ -24,17 +24,19 @@ void	ra(t_list **a)
 	ft_remove_head(a);
 	printf("ra\n");
 }
-void	rb(t_list **a)
+
+void	rb(t_list **b)
 {
 	int		value;
 	int		position;
 	t_list	*node;
 
-	value = (*a)->value;
-	position = (*a)->position;
+	value = (*b)->value;
+	position = (*b)->position;
 	node = ft_lstnew(value, position);
-	ft_lstadd_back(a, node);
-	ft_remove_head(a);
+	ft_lstadd_back(b, node);
+	ft_remove_head(b);
 	printf("rb\n");
 }
+
 

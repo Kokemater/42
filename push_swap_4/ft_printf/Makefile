@@ -6,7 +6,7 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
 
-LIBFTDIR = ./Libft
+LIBFTDIR = ./libft
 SRCS = 	ft_printf.c \
 print_hexadecimal.c \
 print_number.c \
@@ -25,7 +25,7 @@ makelibft:
 	@mv $(LIBFTNAME) $(NAME)			# Renombra libft.a a libftprintf.a
 
 $(NAME): makelibft $(OBJS)
-	@ar -r $(NAME) $(OBJS)				#Crea libft.a a partir de los objs
+	@ar -r $(NAME) $(OBJS)				#Crea makelibft.a a partir de los objs
 
 clean:
 	@rm -f $(OBJS)						#Elimina los objs del directorio actual
