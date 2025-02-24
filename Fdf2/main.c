@@ -45,31 +45,24 @@ void	draw_line_dda(void *mlx, void *win, float *p1, float *p2)
 	float	dx;
 	float	dy;
 	int		steps;
-	float	x_inc;
-	float	y_inc;
-	float	x;
-	float	y;
+	float	current[2];
+	int i = 0;
 
 	dx = p2[0] - p1[0];
 	dy = p2[1] - p1[1];
 	if (fabs(dx) > fabs(dy))
-	{
 		steps = fabs(dx);
-	}
 	else
-	{
 		steps = fabs(dy);
-	}
-	x_inc = dx / steps;
-	y_inc = dy / steps;
-	x = p1[0];
-	y = p1[1];
-	for (int i = 0; i <= steps; i++)
+	current[0] = p1[0];
+	current[1] = p1[1];
+	while (i < steps)
 	{
-		if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
-			mlx_pixel_put(mlx, win, (int)x, (int)y, 0xFFFFFF);
-		x += x_inc;
-		y += y_inc;
+		if (current[0] >= 0 && current[0] < WIDTH && current[1] >= 0 && current[1] < HEIGHT)
+			mlx_pixel_put(mlx, win, (int) current[0], (int)current[1], 0xFFFFFF);
+		current[0] += dx / steps;
+		current[1] += dy / steps;
+		i++;
 	}
 }
 
