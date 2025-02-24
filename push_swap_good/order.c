@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 00:49:32 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/11 17:56:49 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:47:46 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,8 @@ static void	order_more_elements(t_list **a, t_list **b, int len)
 {
 	int	cero_index;
 
-	pb(a, b);
 	while (ft_lst_len(*a) > 3)
-		make_minimizer_move(a, b);
+		pb(a, b);
 	order_3_elements(a);
 	while (ft_lst_len(*b) > 0)
 		make_minimizer_move2(a, b);

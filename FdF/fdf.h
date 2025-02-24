@@ -15,20 +15,11 @@
 # define HEIGHT 600
 # define ESC_KEY 65307 // Código de tecla ESC en X11
 
-typedef struct s_camera {
-    float x, y, z;  
-    float speed;    
-} t_camera;
-
-
 typedef struct s_data {
     void    *mlx;
     void    *win;
-    t_camera camera;  
     float   *view_matrix;
 } t_data;
-void render_scene(t_data data, float **scren_points, int size);
-
 
 int			close_window(t_data *data);
 int			key_press(int keycode, t_data *data);
