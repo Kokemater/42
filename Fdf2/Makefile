@@ -2,7 +2,7 @@ LIBNAME = libftgnl.a
 MINILIB = minilibx-linux/libmlx.a
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall  -Wextra
 
 LIBDIR = ./Libraries
 

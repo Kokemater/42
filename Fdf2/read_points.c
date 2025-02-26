@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:33:59 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/26 11:00:02 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/27 00:29:24 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,51 @@ void	free_points(float **points, int size)
 	free(points);
 }
 
+ int atoi_hexadecimal(const char *hex) {
+	hex+=2;
+    int result = 0;
+    while (*hex) {
+        result *= 16;
+        if (*hex >= '0' && *hex <= '9') {
+            result += *hex - '0';
+        } else if (*hex >= 'A' && *hex <= 'F') {
+            result += *hex - 'A' + 10;
+        } else if (*hex >= 'a' && *hex <= 'f') {
+            result += *hex - 'a' + 10;
+        }
+        hex++;
+    }
+    return result;
+}
 
-
-void	process_heights(char **heights, int *i, int *j, float ***points,
+void	process_heights(char **data, int *i, int *j, float ***points,
 		int *size)
 {
 	float	*p1;
+	char **heights_and_color;
+	int len;
 
-	while (heights[*j])
+	while (data[*j])
 	{
-		p1 = malloc(4 * sizeof(int));
+		heights_and_color = ft_split(data[*j], ',');
+		len = 0;
+		while (heights_and_color[len])
+			len++;
+		p1 = malloc(5 * sizeof(int));
 		p1[0] = *i;
 		p1[1] = *j;
-		p1[2] = (float)ft_atoi(heights[*j]);
+		p1[2] = (float) ft_atoi(heights_and_color[0]);
 		p1[3] = 1;
+		if (len == 1)
+			p1[4] = (float) 0xFFFFFF;
+		else
+			p1[4] = (float) atoi_hexadecimal(heights_and_color[1]);
 		append_point(points, p1, size);
-		free(heights[*j]);
+		free(data[*j]);
 		(*j)++;
+		while(len >= 0)
+			free(heights_and_color[len--]);
+		free(heights_and_color);
 	}
 }
 
@@ -85,6 +113,8 @@ float	**create_points(int fd, int *size, int i)
 		process_heights(heights, &i, &j, &points, size);
 		free(heights);
 		i++;
+		printf("%d \n", i);
+
 		line = get_next_line(fd);
 	}
 	return (free(line), points);

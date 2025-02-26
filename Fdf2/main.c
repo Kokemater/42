@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:21:32 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/26 10:49:18 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/27 00:37:34 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	main(int argc, char **argv)
 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "FDF - MiniLibX");
 	if (!data.win)
 		return (1);
-	put_points(data, screen_points, size);
+	put_points(data, screen_points, size, world_points);
 	connect_points_using_dda(data, screen_points, world_points, size);
 	mlx_key_hook(data.win, key_press, &data);
 	mlx_hook(data.win, 17, 0, close_window, &data);

@@ -6,13 +6,13 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:33:03 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/26 10:33:05 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/27 00:41:41 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	draw_line_dda(void *mlx, void *win, float *p1, float *p2)
+void	draw_line_dda(t_data data, float *p1, float *p2, float *world)
 {
 	float	dx;
 	float	dy;
@@ -33,7 +33,7 @@ void	draw_line_dda(void *mlx, void *win, float *p1, float *p2)
 	{
 		if (current[0] >= 0 && current[0] < WIDTH && current[1] >= 0
 			&& current[1] < HEIGHT)
-			mlx_pixel_put(mlx, win, (int)current[0], (int)current[1], 0xFFFFFF);
+			mlx_pixel_put(data.mlx, data.win, (int)current[0], (int)current[1], world[4]);
 		current[0] += dx / steps;
 		current[1] += dy / steps;
 		i++;
@@ -57,8 +57,8 @@ void	connect_points_using_dda(t_data data, float **screen_points,
 				|| (world_points[i][1] == world_points[j][1]
 					&& world_points[i][0] == world_points[j][0] + 1))
 			{
-				draw_line_dda(data.mlx, data.win, screen_points[i],
-					screen_points[j]);
+				draw_line_dda(data, screen_points[i],
+					screen_points[j], world_points[j]);
 			}
 			j++;
 		}
@@ -66,7 +66,7 @@ void	connect_points_using_dda(t_data data, float **screen_points,
 	}
 }
 
-void	put_points(t_data data, float **screen_points, int size)
+void	put_points(t_data data, float **screen_points, int size, float **world_points)
 {
 	int	i;
 
@@ -77,7 +77,7 @@ void	put_points(t_data data, float **screen_points, int size)
 			&& screen_points[i][1] >= 0 && screen_points[i][1] < HEIGHT)
 		{
 			mlx_pixel_put(data.mlx, data.win, (int)screen_points[i][0],
-				(int)screen_points[i][1], 0xFFFFFF);
+				(int)screen_points[i][1], world_points[i][4]);
 		}
 		i++;
 	}

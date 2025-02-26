@@ -30,8 +30,8 @@ void		print_points(float **points, int n_points);
 void		free_points(float **points, int size);
 float		**create_points(int fd, int *size, int i);
 
-void		draw_line_dda(void *mlx, void *win, float *p1, float *p2);
+void	draw_line_dda(t_data data, float *p1, float *p2, float *world);
 void		connect_points_using_dda(t_data data, float **screen_points,
 				float **world_points, int size);
-void		put_points(t_data data, float **screen_points, int size);
+void	put_points(t_data data, float **screen_points, int size, float **world_points);
 #endif
