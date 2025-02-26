@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:23:09 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/02/16 20:57:01 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/02/26 11:02:27 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	i = 0;
 	j = 0;
 	total_space = ft_strlen(s1) + ft_strlen(s2);
-	result = (char *) malloc(sizeof(char) * (total_space + 1));
+	result = (char *)malloc(sizeof(char) * (total_space + 1));
 	result[total_space] = 0;
 	if (!result)
 		return (NULL);
@@ -57,15 +57,14 @@ char	*ft_strchr(const char *s, int c)
 		return (NULL);
 	while (s[i] != 0)
 	{
-		if (s[i] == (char) c)
+		if (s[i] == (char)c)
 			return ((char *)(s + i));
 		i++;
 	}
-	if ((char) c == s[i])
+	if ((char)c == s[i])
 		return ((char *)(s + i));
 	return (0);
 }
-
 
 char	*ft_strndup(const char *src, int n)
 {
@@ -73,7 +72,7 @@ char	*ft_strndup(const char *src, int n)
 	int		i;
 
 	i = 0;
-	dest = (char *) malloc(sizeof(char) * (n + 1));
+	dest = (char *)malloc(sizeof(char) * (n + 1));
 	if (!dest)
 		return (0);
 	dest[n] = 0;

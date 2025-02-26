@@ -1,140 +1,84 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   math_1.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/26 10:33:03 by jbutragu          #+#    #+#             */
+/*   Updated: 2025/02/26 10:33:05 by jbutragu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-void	subtract_vectors(const float *a, const float *b, float *result)
+void	draw_line_dda(void *mlx, void *win, float *p1, float *p2)
 {
-	result[0] = a[0] - b[0];
-	result[1] = a[1] - b[1];
-	result[2] = a[2] - b[2];
-}
+	float	dx;
+	float	dy;
+	int		steps;
+	float	current[2];
+	int		i;
 
-void	normalize(float *v)
-{
-	float	length;
-
-	length = sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
-	v[0] /= length;
-	v[1] /= length;
-	v[2] /= length;
-}
-
-void	cross_product(const float *a, const float *b, float *result)
-{
-	result[0] = a[1] * b[2] - a[2] * b[1];
-	result[1] = a[2] * b[0] - a[0] * b[2];
-	result[2] = a[0] * b[1] - a[1] * b[0];
-}
-
-float	*create_view_matrix(const float *camera, const float *target,
-		const float *up)
-{
-	float	*view_matrix;
-	float	x[3], y[3], z[3];
-
-	view_matrix = (float *)calloc(16, sizeof(float));
-	if (!view_matrix)
-		return (NULL);
-	// Calculando el eje Z (dirección de la vista)
-	subtract_vectors(camera, target, z);
-	normalize(z);
-	// Calculando el eje X (derecha)
-	cross_product(up, z, x);
-	normalize(x);
-	// Calculando el eje Y (arriba corregido)
-	cross_product(z, x, y);
-	normalize(y);
-	// Construcción de la matriz de vista
-	view_matrix[0] = x[0];
-	view_matrix[1] = y[0];
-	view_matrix[2] = z[0];
-	view_matrix[3] = 0;
-	view_matrix[4] = x[1];
-	view_matrix[5] = y[1];
-	view_matrix[6] = z[1];
-	view_matrix[7] = 0;
-	view_matrix[8] = x[2];
-	view_matrix[9] = y[2];
-	view_matrix[10] = z[2];
-	view_matrix[11] = 0;
-	// Traslación en la matriz de vista
-	view_matrix[12] = -(x[0] * camera[0] + x[1] * camera[1] + x[2] * camera[2]);
-	view_matrix[13] = -(y[0] * camera[0] + y[1] * camera[1] + y[2] * camera[2]);
-	view_matrix[14] = -(z[0] * camera[0] + z[1] * camera[1] + z[2] * camera[2]);
-	view_matrix[15] = 1;
-	return (view_matrix);
-}
-
-// Multiplicación de una matriz 4x4 con un vector 4D
-void	multiply_matrix_vector(const float *matrix, const float *point,
-		float *result)
-{
-	for (int i = 0; i < 4; i++)
+	i = 0;
+	dx = p2[0] - p1[0];
+	dy = p2[1] - p1[1];
+	if (fabs(dx) > fabs(dy))
+		steps = fabs(dx);
+	else
+		steps = fabs(dy);
+	current[0] = p1[0];
+	current[1] = p1[1];
+	while (i < steps)
 	{
-		result[i] = 0;
-		for (int j = 0; j < 4; j++)
-		{
-			result[i] += matrix[i * 4 + j] * point[j];
-		}
+		if (current[0] >= 0 && current[0] < WIDTH && current[1] >= 0
+			&& current[1] < HEIGHT)
+			mlx_pixel_put(mlx, win, (int)current[0], (int)current[1], 0xFFFFFF);
+		current[0] += dx / steps;
+		current[1] += dy / steps;
+		i++;
 	}
 }
 
-// Aplicar la proyección isométrica
-void	apply_isometric_projection(const float *view_matrix, float *point)
+void	connect_points_using_dda(t_data data, float **screen_points,
+		float **world_points, int size)
 {
-	float	projection_matrix[16] = {sqrt(2) / 2, sqrt(6) / 6, 0, 0, 0, sqrt(6)
-			/ 3, 0, 0, -sqrt(2) / 2, sqrt(6) / 6, 0, 0, 0, 0, 0, 1};
-	float	temp[4];
+	int	i;
+	int	j;
 
-	// Aplicar la matriz de vista al punto
-	multiply_matrix_vector(view_matrix, point, temp);
-	// Aplicar la proyección isométrica
-	for (int i = 0; i < 4; ++i)
+	i = 0;
+	while (i < size)
 	{
-		point[i] = 0;
-		for (int j = 0; j < 4; ++j)
+		j = 0;
+		while (j < size)
 		{
-			point[i] += projection_matrix[i * 4 + j] * temp[j];
+			if ((world_points[i][0] == world_points[j][0]
+					&& world_points[i][1] == world_points[j][1] + 1)
+				|| (world_points[i][1] == world_points[j][1]
+					&& world_points[i][0] == world_points[j][0] + 1))
+			{
+				draw_line_dda(data.mlx, data.win, screen_points[i],
+					screen_points[j]);
+			}
+			j++;
 		}
-	}
-	// Normalizar si w != 1
-	if (point[3] != 0.0f)
-	{
-		for (int i = 0; i < 3; i++)
-		{
-			point[i] /= point[3];
-		}
-		point[3] = 1.0f;
+		i++;
 	}
 }
 
-// Convertir a coordenadas de pantalla
-void	convert_to_screen_coordinates(float *point, int width, int height)
+void	put_points(t_data data, float **screen_points, int size)
 {
-	float	scale;
+	int	i;
 
-	scale = 100;
-	point[0] = scale * point[0] + width / 2;
-	point[1] = height / 2 - scale * point[1];
-	printf("Coordenadas en pantalla: (%.2f, %.2f)\n", point[0], point[1]);
-}
-
-float	*create_ortho_projection_matrix(const float left_right[2],
-		const float bottom_top[2], const float near_far[2])
-{
-	float *matrix = (float *)calloc(16, sizeof(float));
-	if (!matrix)
-		return (NULL);
-
-	float l = left_right[0], r = left_right[1];
-	float b = bottom_top[0], t = bottom_top[1];
-	float n = near_far[0], f = near_far[1];
-
-	matrix[0] = 2.0f / (r - l);
-	matrix[5] = 2.0f / (t - b);
-	matrix[10] = -2.0f / (f - n);
-	matrix[12] = -(r + l) / (r - l);
-	matrix[13] = -(t + b) / (t - b);
-	matrix[14] = -(f + n) / (f - n);
-	matrix[15] = 1.0f;
-
-	return (matrix);
+	i = 0;
+	while (i < size)
+	{
+		if (screen_points[i][0] >= 0 && screen_points[i][0] < WIDTH
+			&& screen_points[i][1] >= 0 && screen_points[i][1] < HEIGHT)
+		{
+			mlx_pixel_put(data.mlx, data.win, (int)screen_points[i][0],
+				(int)screen_points[i][1], 0xFFFFFF);
+		}
+		i++;
+	}
 }
