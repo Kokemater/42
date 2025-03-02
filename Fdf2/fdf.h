@@ -12,8 +12,8 @@
 # include <unistd.h>
 # include <unistd.h>
 
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 1200
+# define HEIGHT 1200
 # define ESC_KEY 65307 // Código de tecla ESC en X11
 # define SCALE 5
 
@@ -22,6 +22,7 @@ typedef struct s_data
 	void	*mlx;
 	void	*win;
 }			t_data;
+
 
 int			close_window(t_data *data);
 int			key_press(int keycode, t_data *data);

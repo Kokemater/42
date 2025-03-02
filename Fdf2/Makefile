@@ -17,7 +17,7 @@ all: $(NAME)
 
 # Solo compila libft si la librería no existe
 $(LIBDIR)/$(LIBNAME):
-	@if [ ! -f "$@" ]; then make -C $(LIBDIR); fi
+	make -C $(LIBDIR)
 
 $(NAME): $(OBJS) $(LIBDIR)/$(LIBNAME)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBDIR)/$(LIBNAME) $(MINILIB) -fsanitize=address -g -lX11 -lXext -lm -o $(NAME)
