@@ -1,39 +1,33 @@
 LIBNAME = libftgnl.a
 MINILIB = minilibx-linux/libmlx.a
 
-
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
 LIBDIR = ./Libraries
 
-SRCS = 	main.c windows.c read_points.c math_1.c
-INCLUDE = fdf.h
-
+SRCS = main.c windows.c read_points.c math_1.c
 NAME = fdf
-
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-makelibftgnl:
-	@make -C $(LIBDIR)						# Cambia directorio a libft y ejecuta make
-	@cp $(LIBDIR)/$(LIBNAME) .				# Copia libft.a al directorio actual
+$(LIBNAME):
+	@make -C $(LIBDIR)
+	@cp -n $(LIBDIR)/$(LIBNAME) .  
 
-$(NAME): makelibftgnl $(OBJS)
-	cc $(CFLAGS)  $(OBJS) $(LIBNAME) $(MINILIB) -fsanitize=address -g -lX11 -lXext -lm -o $(NAME)
-	# @ar -r $(NAME) $(OBJS)				
+$(NAME): $(OBJS) $(LIBNAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBNAME) $(MINILIB) -fsanitize=address -g -lX11 -lXext -lm -o $(NAME)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJS)						#Elimina los objs del directorio actual
-	@cd $(LIBDIR) && make clean		#Elimina los objs del libft
-
-
+	@rm -f $(OBJS)
+	@cd $(LIBDIR) && make clean
 
 fclean: clean
 	@rm -f $(NAME)
-	@rm -f $(LIBNAME)
-	@cd $(LIBDIR) && make fclean		#Elimina el .a del libft
+	@cd $(LIBDIR) && make fclean
 
 re: fclean all
-

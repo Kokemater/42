@@ -9,7 +9,7 @@ SRC =  lists_funcs_3.c order.c order_next_to.c \
 OBJ = $(SRC:.c=.o)
 
 
-CFLAGS = -Wall -Wextra 
+CFLAGS = -Wall -Wextra -Werror
 
 NAME = push_swap
 INCLUDE = push_swap.h
