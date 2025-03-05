@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 10:55:14 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/03/05 00:45:44 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/03/05 10:40:16 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ int	main(int argc, char *argv[], char *env[])
 			(int [3]){in_out[0], pipe_fd[1], pipe_fd[0]});
 	in_out[1] = open(argv[4], O_RDWR | O_TRUNC | O_CREAT, 0644);
 	if (in_out[1] < 0)
-		perror(argv[4]);
+	{
+		in_out[1] = open(argv[4], O_WRONLY);
+		if (in_out[1] < 0)
+			perror(argv[4]);
+	}
 	pids[1] = run(ft_split(argv[3], ' '), path, env,
 			(int [3]){pipe_fd[0], in_out[1], pipe_fd[1]});
 	close(pipe_fd[0]);
