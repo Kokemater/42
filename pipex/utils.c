@@ -6,12 +6,22 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 10:55:08 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/03/04 12:10:52 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/03/05 00:59:00 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "pipex.h"
+
+int	return_value(int last_ret, int io[2])
+{
+	int	v;
+
+	if (WIFEXITED(last_ret))
+		v = WEXITSTATUS(last_ret);
+	if (io[1] < 0)
+		v = 1;
+	return (v);
+}
 
 char	**get_path(char *env[])
 {
@@ -19,12 +29,12 @@ char	**get_path(char *env[])
 	{
 		if (ft_strncmp(*env, "PATH", 4) == 0)
 			return (ft_split(&(*env)[5], ':'));
-		++env;
+		env++;
 	}
 	return (0);
 }
 
-void	free_tab(char **tab)
+void	free_all(char **tab)
 {
 	char	**p;
 
@@ -39,7 +49,7 @@ void	free_tab(char **tab)
 	free(tab);
 }
 
-char	*find_exec_path(char **path, char *name)
+char	*exec_path_finder(char **path, char *name)
 {
 	char	*full_path;
 

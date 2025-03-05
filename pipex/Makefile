@@ -5,7 +5,7 @@ CFLAGS = -Wall  -Wextra -Werror
 
 LIBDIR = ./Libraries
 
-SRCS = pipex.c utils.c
+SRCS = pipex.c utils.c errors.c run_command.c
 INCLUDE = pipex.h
 
 NAME = pipex
