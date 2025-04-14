@@ -1,5 +1,0 @@
-*.out
-main.c
-.vscode/
-*.o
-*.a

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lists_funcs.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/04 09:28:07 by jbutragu          #+#    #+#             */
+/*   Updated: 2025/02/11 12:28:09 by jbutragu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_list	*ft_lstlast(t_list *lst)
@@ -39,35 +51,10 @@ t_list	*ft_lstnew(int value, int position)
 	return (new_node);
 }
 
-void	print_list(t_list *a, t_list *b)
-{
-	printf("---------------------\n");
-	while (a || b)
-	{
-		printf("---");
-		if (a)
-		{
-			printf("%i ", a->position);
-			a = a->next;
-		}
-		else
-		{
-			printf("  ");
-		}
-		if (b)
-		{
-			printf("%i ", b->position);
-			b = b->next;
-		}
-		printf("---\n");
-	}
-	printf("---------------------\n");
-}
-
 void	ft_lstclear(t_list **lst)
 {
-	t_list *nxt;
-	t_list *current;
+	t_list	*nxt;
+	t_list	*current;
 
 	current = *lst;
 	while (current != NULL)

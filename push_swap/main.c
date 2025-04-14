@@ -1,29 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/04 09:29:44 by jbutragu          #+#    #+#             */
+/*   Updated: 2025/02/11 17:43:30 by jbutragu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-#include <stdio.h>
 
-
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_list	*a;
 	t_list	*b;
+	int		errors;
+	char	**inputs;
+	int		input_len;
 
-	a = create_list(argc, argv);
-	if (!a)
+	if (argc == 1)
+		return (0);
+	inputs = join_args(argc, argv, &input_len);
+	if (!inputs)
 		return (1);
+	errors = inspect_errors(input_len, inputs);
+	if (errors)
+		return (free_arr(inputs), 1);
+	a = create_list(input_len, inputs);
+	if (!a)
+		return (free_arr(inputs), ft_lstclear(&a), 1);
 	b = NULL;
-
-	//printf("------ before ------- \n");
-	//print_list(a, b);
-	// printf("---------------------\n");
-	
 	order_list(&a, &b);
-
-
-	//printf("------ after ------- \n");
-	//print_list(a, b);
-	// printf("---------------------\n");
-
 	ft_lstclear(&a);
 	ft_lstclear(&b);
+	free_arr(inputs);
 }
