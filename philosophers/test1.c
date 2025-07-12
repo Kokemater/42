@@ -1,16 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/12 13:32:04 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/07/12 13:32:05 by jbutragu         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
-#include "philo.h"
+#define UNLOCK_L 0b1
+#define UNLOCK_R 0b10
 
 int	check_dead(t_philo *p)
 {
@@ -24,7 +14,7 @@ int	check_dead(t_philo *p)
 	return (0);
 }
 
-static int	should_end(t_philo *d, int unlock_left, int unlock_right)
+static int	should_end(t_philo *d, int unlock)
 {
 	int	ret;
 
@@ -33,9 +23,9 @@ static int	should_end(t_philo *d, int unlock_left, int unlock_right)
 	if (d->s->should_end)
 	{
 		ret = 1;
-		if (unlock_left)
+		if (unlock & UNLOCK_L)
 			pthread_mutex_unlock(d->lfork);
-		if (unlock_right)
+		if (unlock & UNLOCK_R)
 			pthread_mutex_unlock(d->rfork);
 	}
 	pthread_mutex_unlock(&d->s->check_mutex);
@@ -44,16 +34,16 @@ static int	should_end(t_philo *d, int unlock_left, int unlock_right)
 
 static int	take_forks(t_philo *d)
 {
-	if (should_end(d, FALSE, FALSE))
+	if (should_end(d, 0))
 		return (0);
 	pthread_mutex_lock(d->lfork);
-	if (should_end(d, TRUE, FALSE))
+	if (should_end(d, UNLOCK_L))
 		return (0);
 	print_status(d, "has taken a fork");
 	if (d->s->num_philos == 1)
 		return (0);
 	pthread_mutex_lock(d->rfork);
-	if (should_end(d, TRUE, TRUE))
+	if (should_end(d, UNLOCK_L | UNLOCK_R))
 		return (0);
 	print_status(d, "has taken a fork");
 	return (1);
@@ -69,7 +59,7 @@ static int	eat(t_philo *d)
 	usleep(d->s->time_to_eat * 1000);
 	pthread_mutex_unlock(d->lfork);
 	pthread_mutex_unlock(d->rfork);
-	return (!should_end(d, FALSE, FALSE));
+	return (!should_end(d, 0));
 }
 
 void	*philo_func(void *arg)
@@ -83,12 +73,11 @@ void	*philo_func(void *arg)
 	{
 		if (!take_forks(d))
 			break ;
-
 		if (!eat(d))
 			break ;
 		print_status(d, "is sleeping");
 		usleep(d->s->time_to_sleep * 1000);
-		if (should_end(d, FALSE, FALSE))
+		if (should_end(d, 0))
 			break ;
 		print_status(d, "is thinking");
 	}

@@ -12,54 +12,59 @@
 
 #include "philo.h"
 
-static void	sim_free(t_sim *sim)
+static void	sim_free(t_sim *simul)
 {
 	int	i;
 
 	i = 0;
-	while (i < sim->num_philos)
-		pthread_join(sim->philos[i++].thread, 0);
+	while (i < simul->num_philos)
+	{
+		pthread_join(simul->philos[i].thread, 0);
+		i++;
+	}
 	i = 0;
-	while (i < sim->num_philos)
-		pthread_mutex_destroy(&sim->forks[i++]);
-	pthread_mutex_destroy(&sim->write_mut);
-	pthread_mutex_destroy(&sim->check_mut);
-	free(sim->philos);
-	free(sim->forks);
+	while (i < simul->num_philos)
+	{
+		pthread_mutex_destroy(&simul->forks[i]);
+		i++;
+	}
+	pthread_mutex_destroy(&simul->write_mutex);
+	pthread_mutex_destroy(&simul->check_mutex);
+	free(simul->philos);
+	free(simul->forks);
 }
 
-
-static void set_simulation_parameters(t_sim *sim, int argc, char **argv)
+static void	set_simulation_parameters(t_sim *simul, int argc, char **argv)
 {
-	sim->num_philos = ft_atoi(argv[1]);
-	sim->time_death = ft_atoi(argv[2]);
-	sim->time_eat = ft_atoi(argv[3]);
-	sim->time_sleep = ft_atoi(argv[4]);
-
-	sim->target_eats = 0;
+	simul->num_philos = ft_atoi(argv[1]);
+	simul->time_to_death = ft_atoi(argv[2]);
+	simul->time_to_eat = ft_atoi(argv[3]);
+	simul->time_to_sleep = ft_atoi(argv[4]);
+	simul->target_eats = 0;
 	if (argc == 6)
-		sim->target_eats = ft_atoi(argv[5]);
+		simul->target_eats = ft_atoi(argv[5]);
 }
-static int	errors_in_parameters(t_sim sim)
+
+static int	errors_in_parameters(t_sim simul)
 {
-	if (sim.time_sleep < 0 || sim.target_eats < 0 
-		|| sim.time_death < 0 || sim.time_eat < 0
-		  || sim.num_philos < 1 )
+	if (simul.time_to_sleep < 0 || simul.target_eats < 0
+		|| simul.time_to_death < 0 || simul.time_to_eat < 0
+		|| simul.num_philos < 1 )
 		return (1);
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_sim	sim;
+	t_sim	simul;
 
 	if (argc < 5 || argc > 6)
 		return (1);
-	set_simulation_parameters(&sim, argc, argv);
-	if (errors_in_parameters(sim))
+	set_simulation_parameters(&simul, argc, argv);
+	if (errors_in_parameters(simul))
 		return (1);
-	sim_init(&sim);
-	sim_loop(&sim);
-	sim_free(&sim);
+	sim_init(&simul);
+	sim_loop(&simul);
+	sim_free(&simul);
 	return (0);
 }

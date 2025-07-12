@@ -7,7 +7,7 @@ OBJ = $(SRC:.c=.o)
 
 NAME = philo
 
-CFLAGS = -Wall -Wextra -Werror -g # -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror -g 
 INC = philo.h
 
 all: $(NAME)

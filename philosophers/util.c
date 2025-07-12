@@ -46,10 +46,10 @@ long	timestamp_ms(void)
 
 void	print_status(t_philo *d, const char *status)
 {
-	pthread_mutex_lock(&d->s->write_mut);
+	pthread_mutex_lock(&d->s->write_mutex);
 	printf("%li %i %s\n",
-		timestamp_ms() - d->s->sim_start, d->idx + 1, status);
-	pthread_mutex_unlock(&d->s->write_mut);
+	timestamp_ms() - d->s->sim_start, d->idx + 1, status);
+	pthread_mutex_unlock(&d->s->write_mutex);
 }
 
 long	ft_min(long a, long b)

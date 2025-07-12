@@ -20,6 +20,9 @@
 # include <sys/time.h>
 # include <unistd.h>
 
+# define FALSE 0
+# define TRUE 1
+
 typedef struct s_philo
 {
 	pthread_t		thread;
@@ -34,18 +37,17 @@ typedef struct s_philo
 
 typedef struct s_sim
 {
+	t_philo			*philos;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	write_mutex;
+	pthread_mutex_t	check_mutex;
 	int				num_philos;
 	int				should_end;
-	int				time_eat;
+	int				time_to_eat;
 	int				target_eats;
-	int				time_sleep;
-	int				time_death;
+	int				time_to_sleep;
+	int				time_to_death;
 	long			sim_start;
-	t_philo			*philos;
-	// pthread_t		*threads;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	write_mut;
-	pthread_mutex_t	check_mut;
 }	t_sim;
 
 void		*philo_func(void *arg);
@@ -55,7 +57,7 @@ void		print_status(t_philo *d, const char *status);
 long		ft_min(long a, long b);
 int			check_dead(t_philo *p);
 int			target_eats_reached(int rem, t_sim *s);
-void		sim_init(t_sim *sim);
-void		sim_loop(t_sim *sim);
+void		sim_init(t_sim *simul);
+void		sim_loop(t_sim *simul);
 
 #endif
