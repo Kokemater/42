@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "philo.h"
 
 int	ft_atoi(const char *str)
@@ -36,7 +35,7 @@ int	ft_atoi(const char *str)
 	return (result * sign);
 }
 
-long	timestamp_ms(void)
+long	time_in_ms(void)
 {
 	struct timeval	t;
 
@@ -44,26 +43,19 @@ long	timestamp_ms(void)
 	return (t.tv_sec * 1000 + t.tv_usec / 1000);
 }
 
-void	print_status(t_philo *d, const char *status)
+void	print_status(t_philo *phil, const char *status)
 {
-	pthread_mutex_lock(&d->s->write_mutex);
+	pthread_mutex_lock(&phil->s->write_mutex);
 	printf("%li %i %s\n",
-	timestamp_ms() - d->s->sim_start, d->idx + 1, status);
-	pthread_mutex_unlock(&d->s->write_mutex);
+		time_in_ms() - phil->s->sim_start, phil->idx + 1, status);
+	pthread_mutex_unlock(&phil->s->write_mutex);
 }
 
-long	ft_min(long a, long b)
-{
-	if (a < b)
-		return (a);
-	return (b);
-}
-
-int	target_eats_reached(int rem, t_sim *s)
+int	reach_target_eats(int rem, t_sim *s)
 {
 	if (rem == 0 && s->target_eats != 0)
 	{
-		s->should_end = 1;
+		s->sim_should_end = 1;
 		return (1);
 	}
 	return (0);

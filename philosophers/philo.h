@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -42,7 +41,7 @@ typedef struct s_sim
 	pthread_mutex_t	write_mutex;
 	pthread_mutex_t	check_mutex;
 	int				num_philos;
-	int				should_end;
+	int				sim_should_end;
 	int				time_to_eat;
 	int				target_eats;
 	int				time_to_sleep;
@@ -52,12 +51,11 @@ typedef struct s_sim
 
 void		*philo_func(void *arg);
 int			ft_atoi(const char *str);
-long		timestamp_ms(void);
-void		print_status(t_philo *d, const char *status);
-long		ft_min(long a, long b);
-int			check_dead(t_philo *p);
-int			target_eats_reached(int rem, t_sim *s);
-void		sim_init(t_sim *simul);
-void		sim_loop(t_sim *simul);
+long		time_in_ms(void);
+void		print_status(t_philo *phil, const char *status);
+int			check_dead(t_philo *phil);
+int			reach_target_eats(int rem, t_sim *s);
+void		initialice_simulation(t_sim *simul);
+void		loop_simulation(t_sim *simul);
 
 #endif

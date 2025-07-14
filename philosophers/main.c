@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-static void	sim_free(t_sim *simul)
+static void	free_simulation(t_sim *simul)
 {
 	int	i;
 
@@ -49,7 +49,7 @@ static int	errors_in_parameters(t_sim simul)
 {
 	if (simul.time_to_sleep < 0 || simul.target_eats < 0
 		|| simul.time_to_death < 0 || simul.time_to_eat < 0
-		|| simul.num_philos < 1 )
+		|| simul.num_philos < 1)
 		return (1);
 	return (0);
 }
@@ -63,8 +63,8 @@ int	main(int argc, char **argv)
 	set_simulation_parameters(&simul, argc, argv);
 	if (errors_in_parameters(simul))
 		return (1);
-	sim_init(&simul);
-	sim_loop(&simul);
-	sim_free(&simul);
+	initialice_simulation(&simul);
+	loop_simulation(&simul);
+	free_simulation(&simul);
 	return (0);
 }

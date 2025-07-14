@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-void	sim_init(t_sim *simul)
+void	initialice_simulation(t_sim *simul)
 {
 	int	i;
 
@@ -24,8 +24,8 @@ void	sim_init(t_sim *simul)
 	while (i < simul->num_philos)
 		pthread_mutex_init(&simul->forks[i++], 0);
 	i = 0;
-	simul->sim_start = timestamp_ms();
-	simul->should_end = 0;
+	simul->sim_start = time_in_ms();
+	simul->sim_should_end = 0;
 	while (i < simul->num_philos)
 	{
 		simul->philos[i].idx = i;
@@ -41,7 +41,7 @@ void	sim_init(t_sim *simul)
 	}
 }
 
-void	sim_loop(t_sim *simul)
+void	loop_simulation(t_sim *simul)
 {
 	int	eats_rem;
 	int	i;
@@ -56,7 +56,7 @@ void	sim_loop(t_sim *simul)
 			if (check_dead(&simul->philos[i]))
 			{
 				pthread_mutex_unlock(&simul->check_mutex);
-				simul->should_end = 1;
+				simul->sim_should_end = 1;
 				return ;
 			}
 			if (simul->philos[i].num_eats < simul->target_eats)
@@ -64,7 +64,7 @@ void	sim_loop(t_sim *simul)
 			++i;
 		}
 		pthread_mutex_unlock(&simul->check_mutex);
-		if (target_eats_reached(eats_rem, simul))
+		if (reach_target_eats(eats_rem, simul))
 			return ;
 		usleep(100);
 	}
