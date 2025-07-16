@@ -7,7 +7,7 @@ OBJ = $(SRC:.c=.o)
 
 NAME = philo
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=thread
 INC = philo.h
 
 all: $(NAME)

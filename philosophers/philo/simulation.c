@@ -55,8 +55,8 @@ void	loop_simulation(t_sim *simul)
 		{
 			if (check_dead(&simul->philos[i]))
 			{
-				pthread_mutex_unlock(&simul->check_mutex);
 				simul->sim_should_end = 1;
+				pthread_mutex_unlock(&simul->check_mutex);
 				return ;
 			}
 			if (simul->philos[i].num_eats < simul->target_eats)

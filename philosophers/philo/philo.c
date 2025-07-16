@@ -45,36 +45,21 @@ static int	sim_should_end(t_philo *phil, int unlock_left, int unlock_right)
 
 static int	take_forks(t_philo *phil)
 {
-	if (phil->lfork < phil->rfork) 
-	{
-		if (sim_should_end(phil, FALSE, FALSE))
+	if (sim_should_end(phil, FALSE, FALSE))
 		return (0);
-		pthread_mutex_lock(phil->lfork);
-		if (sim_should_end(phil, TRUE, FALSE))
-			return (0);
-		print_status(phil, "has taken a fork");
-		if (phil->s->num_philos == 1)
-			return (0);
-		pthread_mutex_lock(phil->rfork);
-		if (sim_should_end(phil, TRUE, TRUE))
-			return (0);
-		print_status(phil, "has taken a fork");
-	}
-	else	
-	{
-		if (sim_should_end(phil, FALSE, FALSE))
+	pthread_mutex_lock(phil->lfork);
+	if (sim_should_end(phil, TRUE, FALSE))
 		return (0);
-		pthread_mutex_lock(phil->rfork);
-		if (sim_should_end(phil, FALSE, TRUE))
-			return (0);
-		print_status(phil, "has taken a fork");
-		if (phil->s->num_philos == 1)
-			return (0);
-		pthread_mutex_lock(phil->lfork);
-		if (sim_should_end(phil, TRUE, TRUE))
-			return (0);
-		print_status(phil, "has taken a fork");
+	print_status(phil, "has taken a fork");
+	if (phil->s->num_philos == 1)
+	{
+		pthread_mutex_unlock(phil->lfork);
+		return (0);
 	}
+	pthread_mutex_lock(phil->rfork);
+	if (sim_should_end(phil, TRUE, TRUE))
+		return (0);
+	print_status(phil, "has taken a fork");
 	return (1);
 }
 
