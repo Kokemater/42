@@ -50,9 +50,9 @@ void	loop_simulation(t_sim *simul)
 	{
 		i = 0;
 		eats_rem = 0;
-		pthread_mutex_lock(&simul->check_mutex);
 		while (i < simul->num_philos)
 		{
+			pthread_mutex_lock(&simul->check_mutex);
 			if (check_dead(&simul->philos[i]))
 			{
 				simul->sim_should_end = 1;
@@ -62,10 +62,15 @@ void	loop_simulation(t_sim *simul)
 			if (simul->philos[i].num_eats < simul->target_eats)
 				++eats_rem;
 			++i;
+			pthread_mutex_unlock(&simul->check_mutex);
+		}
+		pthread_mutex_lock(&simul->check_mutex);
+		if (reach_target_eats(eats_rem, simul))
+		{
+			pthread_mutex_unlock(&simul->check_mutex);
+			return ;
 		}
 		pthread_mutex_unlock(&simul->check_mutex);
-		if (reach_target_eats(eats_rem, simul))
-			return ;
-		usleep(100);
+		usleep(1000);
 	}
 }

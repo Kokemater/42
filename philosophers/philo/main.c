@@ -34,7 +34,7 @@ static void	free_simulation(t_sim *simul)
 	free(simul->forks);
 }
 
-static void	set_simulation_parameters(t_sim *simul, int argc, char **argv)
+static int	set_simulation_parameters(t_sim *simul, int argc, char **argv)
 {
 	simul->num_philos = ft_atoi(argv[1]);
 	simul->time_to_death = ft_atoi(argv[2]);
@@ -43,6 +43,9 @@ static void	set_simulation_parameters(t_sim *simul, int argc, char **argv)
 	simul->target_eats = 0;
 	if (argc == 6)
 		simul->target_eats = ft_atoi(argv[5]);
+	if (argc == 6 && simul->target_eats == 0)
+		return (0);
+	return (1);
 }
 
 static int	errors_in_parameters(t_sim simul)
@@ -60,7 +63,8 @@ int	main(int argc, char **argv)
 
 	if (argc < 5 || argc > 6)
 		return (1);
-	set_simulation_parameters(&simul, argc, argv);
+	if (!set_simulation_parameters(&simul, argc, argv))
+		return (0);
 	if (errors_in_parameters(simul))
 		return (1);
 	initialice_simulation(&simul);
