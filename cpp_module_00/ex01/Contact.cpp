@@ -1,17 +1,24 @@
 #include "Contact.hpp"
 #include <iostream>
+#include <iomanip>
 
 Contact::Contact() {
-    name = "";
-    number = "";
+    index = "";
+    firstName = "";
+    lastName = "";
+    nickName = "";
 }
 
-void Contact::setContact(std::string newName, std::string newPhone)
+void Contact::setContact(std::string firstName, std::string lastName, std::string nickName)
 {
-    name = newName;
-    number = newPhone;
+    firstName = firstName;
+    lastName = lastName;
+    nickName = nickName;
 }
 void Contact::display()
 {
-    std::cout << "name: " << name << std::endl << "number: " << number << std::endl;
+    std::cout << std::setw(10) << index << "|"
+              << std::setw(10) << (firstName) << "|"
+              << std::setw(10) << (lastName) << "|"
+              << std::setw(10) << (nickName) << "\n";
 }

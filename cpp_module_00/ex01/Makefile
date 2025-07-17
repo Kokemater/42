@@ -1,9 +1,11 @@
 SRC = Contact.cpp\
+PhoneBook.cpp\
+main.cpp\
 
 	  
 OBJ = $(SRC:.cpp=.o)
 
-NAME = megaphone
+NAME = phonebook
 
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 

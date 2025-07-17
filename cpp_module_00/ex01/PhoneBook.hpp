@@ -5,25 +5,18 @@
 #include <iostream>
 #include "Contact.hpp"
 
+#define MAX_CONTACTS 3
+
 class PhoneBook
 {
 private:
-    Contact contacts[8];
+    Contact contacts[MAX_CONTACTS];
     int idx;
     int totalContacts;
-
 public:
-    void addContact(std::string newName, std::string newPhone)
-    {
-        contacts[idx].setContact(newName, newPhone);
-    }
-    void display(void)
-    {
-        for (int i = 0; i < idx; i++)
-        {
-            contacts[i].display();
-        }
-    }
+    PhoneBook();
+    void addContact(std::string firstName, std::string secondName, std::string nickName);
+    void display(void);
 };
 
 #endif

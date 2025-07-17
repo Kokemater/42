@@ -6,12 +6,14 @@
 class Contact
 {
 private:
-    std::string name;
-    std::string number;
+    std::string index;
+    std::string firstName;
+    std::string lastName;
+    std::string nickName;
 
 public:
     Contact();
-    void setContact(std::string newName, std::string newPhone);
+    void setContact(std::string firstName, std::string lastName, std::string nickName);
     void display(void);
 };
 
