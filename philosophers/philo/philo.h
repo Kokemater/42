@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 13:32:15 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/07/12 13:45:49 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/07/17 11:03:49 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,12 @@ typedef struct s_sim
 void		*philo_func(void *arg);
 int			ft_atoi(const char *str);
 long		time_in_ms(void);
+int			take_left_then_right(t_philo *phil);
+int			take_right_then_left(t_philo *phil);
+int			take_forks(t_philo *phil);
 void		print_status(t_philo *phil, const char *status);
 int			check_dead(t_philo *phil);
+int			sim_should_end(t_philo *phil, int unlock_left, int unlock_right);
 int			reach_target_eats(int rem, t_sim *s);
 void		initialice_simulation(t_sim *simul);
 void		loop_simulation(t_sim *simul);

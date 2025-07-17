@@ -12,6 +12,27 @@
 
 #include "philo.h"
 
+static int	check_philos_health(t_sim *simul, int *eats_rem)
+{
+	int	i;
+
+	i = 0;
+	*eats_rem = 0;
+	while (i < simul->num_philos)
+	{
+		if (check_dead(&simul->philos[i]))
+		{
+			simul->sim_should_end = 1;
+			pthread_mutex_unlock(&simul->check_mutex);
+			return (0);
+		}
+		if (simul->philos[i].num_eats < simul->target_eats)
+			++(*eats_rem);
+		++i;
+	}
+	return (1);
+}
+
 void	initialice_simulation(t_sim *simul)
 {
 	int	i;
@@ -44,26 +65,13 @@ void	initialice_simulation(t_sim *simul)
 void	loop_simulation(t_sim *simul)
 {
 	int	eats_rem;
-	int	i;
 
 	while (1)
 	{
-		i = 0;
-		eats_rem = 0;
-		while (i < simul->num_philos)
-		{
-			pthread_mutex_lock(&simul->check_mutex);
-			if (check_dead(&simul->philos[i]))
-			{
-				simul->sim_should_end = 1;
-				pthread_mutex_unlock(&simul->check_mutex);
-				return ;
-			}
-			if (simul->philos[i].num_eats < simul->target_eats)
-				++eats_rem;
-			++i;
-			pthread_mutex_unlock(&simul->check_mutex);
-		}
+		pthread_mutex_lock(&simul->check_mutex);
+		if (!check_philos_health(simul, &eats_rem))
+			return ;
+		pthread_mutex_unlock(&simul->check_mutex);
 		pthread_mutex_lock(&simul->check_mutex);
 		if (reach_target_eats(eats_rem, simul))
 		{
@@ -71,6 +79,6 @@ void	loop_simulation(t_sim *simul)
 			return ;
 		}
 		pthread_mutex_unlock(&simul->check_mutex);
-		usleep(1000);
+		usleep(simul->time_to_death * 1000 / 2 + 1000);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jbutragu <jbutragu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 13:31:57 by jbutragu          #+#    #+#             */
-/*   Updated: 2025/07/12 13:31:58 by jbutragu         ###   ########.fr       */
+/*   Updated: 2025/07/17 11:10:29 by jbutragu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,19 @@ int	reach_target_eats(int rem, t_sim *s)
 	if (rem == 0 && s->target_eats != 0)
 	{
 		s->sim_should_end = 1;
+		return (1);
+	}
+	return (0);
+}
+
+int	check_dead(t_philo *phil)
+{
+	if (!phil->dead
+		&& phil->s->time_to_death < (time_in_ms() - phil->last_eat))
+	{
+		print_status(phil, "died");
+		phil->dead = 1;
+		phil->s->sim_should_end = 1;
 		return (1);
 	}
 	return (0);
