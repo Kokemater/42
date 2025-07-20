@@ -5,7 +5,7 @@
 #include <iostream>
 #include "Contact.hpp"
 
-#define MAX_CONTACTS 3
+#define MAX_CONTACTS 8
 
 class PhoneBook
 {
@@ -15,8 +15,9 @@ private:
     int totalContacts;
 public:
     PhoneBook();
-    void addContact(std::string firstName, std::string secondName, std::string nickName);
+    void addContact(std::string firstName, std::string secondName, std::string nickName, std::string phoneNumber, std::string darkestSecret);
     void display(void);
+    void long_display(int index);
 };
 
 #endif
