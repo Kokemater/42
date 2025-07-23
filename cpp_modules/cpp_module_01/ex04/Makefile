@@ -1,11 +1,8 @@
-SRC = HumanA.cpp\
-HumanB.cpp\
-Weapon.cpp\
-main.cpp\
+SRC = main.cpp\
 	  
 OBJ = $(SRC:.cpp=.o)
 
-NAME = zombie
+NAME = replace
 
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 

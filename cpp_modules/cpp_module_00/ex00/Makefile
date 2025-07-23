@@ -6,14 +6,13 @@ OBJ = $(SRC:.cpp=.o)
 NAME = megaphone
 
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
-INC = philo.h
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	c++ $(CPPFLAGS) $(OBJ) -o $@
 
-%.o: %.c $(INC)
+%.o: %.cpp
 	c++ $(CPPFLAGS) -c $< -o $@ 
 
 clean:

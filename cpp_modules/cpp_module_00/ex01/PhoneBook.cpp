@@ -21,16 +21,16 @@ void PhoneBook::display(void)
 {
     for (int i = 0; i < totalContacts; i++)
     {
-        contacts[i].short_display();
+        contacts[i].shortDisplay();
     }
 }
 
-void PhoneBook::long_display(int index)
+void PhoneBook::longDisplay(int index)
 {
     if (index >= totalContacts || index < 0)
     {
         std:: cout << "Invalid input. Contact ID must exist" << std::endl;
         return ;
     }
-    contacts[index].complete_display();
+    contacts[index].completeDisplay();
 }

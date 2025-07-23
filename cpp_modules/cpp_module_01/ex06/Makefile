@@ -1,14 +1,11 @@
-SRC = HumanA.cpp\
-HumanB.cpp\
-Weapon.cpp\
+SRC = Harl.cpp\
 main.cpp\
 	  
 OBJ = $(SRC:.cpp=.o)
 
-NAME = zombie
+NAME = harlFilter
 
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
-
 
 all: $(NAME)
 

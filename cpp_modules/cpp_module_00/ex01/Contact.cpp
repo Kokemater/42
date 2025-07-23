@@ -20,7 +20,7 @@ void Contact::setContact(std::string firstName, std::string lastName, std::strin
     this->phoneNumber = phoneNumber;
     this->darkestSecret = darkestSecret;
 }
-void Contact::short_display()
+void Contact::shortDisplay()
 {
     std::string fn = firstName.length() > 10 ? firstName.substr(0, 9) + "." : firstName;
     std::string ln = lastName.length() > 10 ? lastName.substr(0, 9) + "." : lastName;
@@ -31,7 +31,7 @@ void Contact::short_display()
               << std::setw(10) << nn << "\n";
 }
 
-void Contact::complete_display()
+void Contact::completeDisplay()
 {
     std::string fn = firstName.length() > 10 ? firstName.substr(0, 9) + "." : firstName;
     std::string ln = lastName.length() > 10 ? lastName.substr(0, 9) + "." : lastName;

@@ -1,12 +1,5 @@
 #include <iostream>
 
-char ft_to_upper(char letter)
-{
-    if (letter >= 'a' && letter <= 'z')
-        letter -= 'a' - 'A';
-    return (letter);
-}
-
 int main(int argc, char **argv)
 {
     char    letter;
@@ -19,7 +12,7 @@ int main(int argc, char **argv)
         {
             for (int j = 0; argv[i][j] != 0; j++)
             {
-                letter = ft_to_upper(argv[i][j]);
+	      letter = std::toupper(argv[i][j]);
                 std::cout << letter;
             }
         }
