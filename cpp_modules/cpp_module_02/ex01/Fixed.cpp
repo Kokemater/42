@@ -1,4 +1,5 @@
 #include "Fixed.hpp"
+#include <cmath>
 
 Fixed::Fixed()
 {
@@ -9,9 +10,7 @@ Fixed::Fixed()
 Fixed::Fixed(const int fixedPointValue)
 {
     std::cout << "Int constructor called" << std::endl;
-    int scale = 1 << fractionalBits;
-    float newVal = fixedPointValue * scale;
-    this->fixedPointValue = (int) newVal;
+    this->fixedPointValue =  fixedPointValue << fractionalBits;
 }
 
 Fixed::Fixed(const float fixedPointValue)
@@ -19,7 +18,7 @@ Fixed::Fixed(const float fixedPointValue)
     std::cout << "Float constructor called" << std::endl;
     int scale = 1 << fractionalBits;
     float newVal = fixedPointValue * scale;
-    this->fixedPointValue = (int) newVal;
+    this->fixedPointValue = roundf(newVal);
 }
 
 Fixed::Fixed(const Fixed &other)
