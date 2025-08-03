@@ -1,24 +1,9 @@
 #include "Fixed.hpp"
-#include <cmath>
 
 Fixed::Fixed()
 {
     std::cout << "Default constructor called" << std::endl;
     this->fixedPointValue = 0;
-}
-
-Fixed::Fixed(const int fixedPointValue)
-{
-    std::cout << "Int constructor called" << std::endl;
-    this->fixedPointValue =  fixedPointValue << fractionalBits;
-}
-
-Fixed::Fixed(const float fixedPointValue)
-{
-    std::cout << "Float constructor called" << std::endl;
-    int scale = 1 << fractionalBits;
-    float newVal = fixedPointValue * scale;
-    this->fixedPointValue = roundf(newVal);
 }
 
 Fixed::Fixed(const Fixed &other)
@@ -37,6 +22,7 @@ Fixed& Fixed::operator=(const Fixed &other)
     return (*this);  
 }
 
+
 Fixed::~Fixed()
 {
     std::cout << "Destructor called" << std::endl;
@@ -52,20 +38,4 @@ int Fixed::getRawBits( void ) const
 void Fixed::setRawBits( int const raw )
 {
     this->fixedPointValue = raw;
-}
-
-float Fixed::toFloat( void ) const
-{
-    float scale = 1 << fractionalBits;
-    return ((float) this->fixedPointValue / scale);
-}
-
-int Fixed::toInt( void ) const
-{
-    return ((int) toFloat());
-}
-
-std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
-    os << fixed.toFloat();
-    return os;
 }

@@ -8,7 +8,7 @@ void replaceAll(std::string &content, std::string s1, std::string s2)
     size_t pos = 0;
     while((pos = content.find(s1, pos)) != std::string::npos)
     {
-        content = content.substr(0, pos) + s2 + content.substr(pos + s2.length());
+        content = content.substr(0, pos) + s2 + content.substr(pos+s2.length()+1);
         pos += s2.length();
     }
 }
@@ -37,13 +37,13 @@ int main(int argc, char* argv[])
     infile.close();
 
     replaceAll(content, s1, s2);
-    std::string new_filename = filename + ".replace";
-    std::fstream outfile(new_filename.c_str(), std::ios::out | std::ios::trunc);
+    std::string new_out = filename + ".replace";
+    std::fstream outfile(new_out.c_str(), std::ios::out | std::ios::trunc);
     if (!outfile) {
         std::cout << "ERROR IN THE OPENING OF THE FILE '" << filename << "' " << std::endl;
         return 1;
     }
-    outfile << content << std::endl;
+    outfile << content;
     outfile.close();
 
     return 0;

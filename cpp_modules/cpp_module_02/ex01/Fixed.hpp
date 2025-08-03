@@ -9,16 +9,11 @@ private:
 
 public:
     Fixed();                                // constructor
-    Fixed(const int fixedPointValue);
-    Fixed(const float fixedPointValue);
     Fixed(const Fixed &other);              // copy constructor
     Fixed& operator=(const Fixed &other);    // copy assignment operator
     ~Fixed();                               // destructor
     int getRawBits( void ) const;
     void setRawBits( int const raw );
-    float toFloat( void ) const;
-    int toInt( void ) const;
-    
 };
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 
