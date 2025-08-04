@@ -45,13 +45,6 @@ int main()
     ft.printData();
 
     std::cout << "=============================" << std::endl;
-    //tests for orthodoxal-cannonical-form
-    FragTrap ft_default;
-    ft_default.printData();
-    FragTrap ft1 = ft;
-    FragTrap ft2(ft);
-    ft1.printData();
-    ft2.printData();
     
     return 0;
 }

@@ -30,13 +30,6 @@ int main()
     st.printData();
 
     std::cout << "=============================" << std::endl;
-    //tests for orthodoxal-cannonical-form
-    ClapTrap st_default;
-    st_default.printData();
-    ClapTrap st1 = st;
-    ClapTrap st2(st);
-    st1.printData();
-    st2.printData();
     
     return 0;
 }

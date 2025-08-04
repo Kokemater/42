@@ -16,15 +16,5 @@ int main()
 
     std::cout << "=============================" << std::endl;
 
-    //tests for orthodoxal-cannonical-form
-    ClapTrap ct_default;
-    ct_default.printData();
-    ClapTrap ct1 = ct;
-    ClapTrap ct2(ct);
-    ct.printData();
-    ct1.printData();
-    ct2.printData();
-    std::cout << "=============================" << std::endl;
-
     return 0;
 }
