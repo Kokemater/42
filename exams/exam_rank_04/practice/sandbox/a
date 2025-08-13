@@ -1,0 +1,45 @@
+==== Test : ok_f (nice function, immediate return) (timeout 2s) ====
+Nice function!
+Result = 1
+
+==== Test : inf_f (infinite loop, should timeout) (timeout 2s) ====
+Bad function: timed out after 2 seconds
+Result = 0
+
+==== Test : bad_exit (exit with code 41) (timeout 2s) ====
+==== Test : ok_f (nice function, immediate return) (timeout 2s) ====
+Nice function!
+Result = 1
+
+==== Test : inf_f (infinite loop, should timeout) (timeout 2s) ====
+Bad function: timed out after 2 seconds
+Result = 0
+
+==== Test : bad_exit (exit with code 41) (timeout 2s) ====
+Bad function: exited with code 41
+Result = 0
+
+==== Test : cancel_alarm (ignore SIGALRM, sleep 5s) (timeout 2s) ====
+Bad function: timed out after 2 seconds
+Result = 0
+
+==== Test : segfault_f (segmentation fault) (timeout 2s) ====
+Bad function: Segmentation fault
+Result = 0
+
+==== Test : abort_f (abort signal SIGABRT) (timeout 2s) ====
+Bad function: Aborted
+Result = 0
+
+==== Test : stop_f (stops self with SIGSTOP, never continues) (timeout 2s) ====
+Bad function: timed out after 2 seconds
+Result = 0
+
+==== Test : suicide_f (kills self with SIGKILL) (timeout 2s) ====
+Bad function: Killed
+Result = 0
+
+==== Test : fast_print_f (quick print + return 0) (timeout 2s) ====
+Nice function!
+Result = 1
+

@@ -154,7 +154,7 @@ int main(void)
 	operation = operation_cpy;
 	next_token();
 	int result = parse_operation(0);
-	if (result == -1)
+	if (result <0)
 		return (1);
 
 	printf("RESULT: %d \n ", result);
