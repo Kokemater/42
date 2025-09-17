@@ -1,0 +1,7 @@
+*.o
+*.supp
+minishell
+fdsa
+*.txt
+minishell_tester/
+.vscode/
